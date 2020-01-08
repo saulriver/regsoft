@@ -1,0 +1,122 @@
+<br/><br/>
+  <h1 style="color: #6c757d;">Aplicación cliente</h1>
+  <hr>
+<br/><%= notice %>
+
+ <div class="row">
+<div class="col-sm-12">
+ <div class="footer text-left">
+    <%= link_to 'Regresar', users_path, class:"btn btn-info" %>
+  </div><br/>
+     <h5 class="text-left"><kbd>Usuario</kbd></h5>
+  <div id="Nservicios" class="modal-content text-center tabcontent">
+    <div class="table-responsive">
+     <table class="table">
+      <thead>
+     <div class="row">
+     <tr class="alert alert-secondary justify-content-center">
+            <th colspan="3">Id</th>           
+            <th>Nombre</th> 
+            <th>Nombre_usuario</th> 
+            <th>Rol</th>   
+            <th>Correo</th>        
+            <th>Estado</th>  
+          </tr>
+          </div>
+        </thead>
+          <tbody>          
+              <tr class="text-center">
+                <td colspan="3"><kbd><%= @user.id %></kbd></td>
+                <td><%= @user.name %></td> 
+                <td><%= @user.username %></td> 
+                <td><%= @user.role.name %></td>
+                <td><%= @user.email %></td>
+                <td>
+                    <% if @user.state %>
+                      <img src="/img/estado_activo_24.png" alt="Activo" />
+                    <% else %>           
+                      <img src="/img/estado_falso_24.png" alt="Inactivo" />
+                    <% end %>
+                </td>
+              </tr>            
+          </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+
+ <p class="divider"></p>
+
+<div class="row">
+<div class="col-sm-8">
+<h5 class="text-left"><kbd>Listado aplicación cliente</kbd></h5> 
+<div id="Uaplicaciones" class="modal-content text-center tabcontent">
+<div class="table-responsive">
+<table class="table">
+  <thead>
+  <div class="row">
+    <tr class="alert alert-secondary justify-content-center">
+      <th colspan="3">Id</th> 
+      <th>Cliente</th>
+      <th>Aplicación</th>
+      <th>Acuerdo gestión(ANS)</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+    </div>
+  </thead>
+
+  <% @userapplications.each do |userapplication| %>
+
+  <tbody>
+    <div class="row">
+      <tr class="text-center">
+        <td colspan="3"><kbd><%= userapplication.id %></kbd></td>
+        <td><%= userapplication.applicationclient.client.name %></td>
+        <td><%= userapplication.applicationclient.application.name %></td>
+        <td><%= userapplication.applicationclient.servicelevel %></td>
+        <td>
+          <% if userapplication.state %>
+             <img src="/img/estado_activo_24.png" alt="Activo" />
+          <% else %>           
+             <img src="/img/estado_falso_24.png" alt="Inactivo" />
+          <% end %>
+        </td>
+         <td>
+           <%= link_to userapplication, method: :delete, data: { confirm: 'Are you sure?', remote: true } do %>
+                <%= image_tag "/img/eliminar_24.png", :title=>"Eliminar" %>
+           <% end %>
+        </td>
+      </tr>
+      </div>
+      </tbody>
+
+    <% end %>
+  
+</table>
+</div>
+</div>
+</div>
+
+<div class="col-sm-4"> 
+  <div class="card">
+  <h5><kbd>Asignar</kbd></h5>
+    <div class="card-body">
+      <%= form_for @userapplication, url: user_application_create_path do |f| %>
+         <%= f.hidden_field :user_id, :value => @user.id%>
+        <%= f.hidden_field :state, :value => true%>
+
+      <label class="form-group">
+        <%= f.label :applicationclient %>
+        <%= f.select :applicationclient_id, options_for_select(@applicationclients.collect{ |applicationclient| [[applicationclient.servicelevel,applicationclient.application.name], applicationclient.id] })%>
+      </label>
+
+        <br/><br/>
+        <%= f.submit "Enviar", class: "btn btn-info btn-block" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+</div>
