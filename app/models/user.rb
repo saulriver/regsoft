@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :username, :presence => true
   belongs_to :role
   belongs_to :login
+  has_many :applicationclients
   has_many :userclients
   has_many :userapplications
   has_many :userareas

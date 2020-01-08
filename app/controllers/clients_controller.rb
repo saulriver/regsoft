@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
       @clients = Client.where("name LIKE ?", "%#{params[:search]}%").page params[:page]
     else
       @clients = Client.page(params[:page]).per(5)
-  end
+    end
   end
 
   # GET /clients/1
@@ -67,29 +67,25 @@ class ClientsController < ApplicationController
 
   def client_application_client_index    
     @client = Client.find(params[:id]) 
-    @clientapplicationclients = @client.applicationclients
+    @clientapplicationclients = @client.applicationclients.page(params[:page]).per(5)
     @applications = Application.all
     @applicationclient = Applicationclient.new
     render "applicationclients/index"
 
   end
 
-   def client_application_client_create
-    
+def client_application_client_create
     @applicationclient = Applicationclient.new(applicationclient_params)
-
-
-    if @applicationclient.save
-      @client = Client.find(params[:id]) 
-      @clientapplicationclients = @client.applicationclients
-      @applications = Application.all
-      @clientapplicationclient = Applicationclient.new
-      render "applicationclients/index"
-    else
-        render json: { error: @clientapplicationclient.errors.full_messages }, status: :bad_request
-    end
-
+  if @applicationclient.save
+   @client = Client.find(params[:id]) 
+   @clientapplicationclients = @client.applicationclients.page(params[:page]).per(5)
+   @applications = Application.all
+   @clientapplicationclient = Applicationclient.new
+    render "applicationclients/index"
+  else
+    format.json { render json: @clientapplicationclient.errors, status: :unprocessable_entity }
   end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -103,6 +99,6 @@ class ClientsController < ApplicationController
     end
 
     def applicationclient_params
-      params.require(:applicationclient).permit(:client_id, :state, :servicelevel, :application_id)
-  end
+      params.require(:applicationclient).permit(:user_id, :client_id, :state, :servicelevel, :application_id, :page)
+    end
 end

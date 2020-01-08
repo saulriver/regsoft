@@ -250,69 +250,54 @@ li a:hover:not(.active) {
 /*========================================CSS FORM========================================================*/
 
 input[type=text],
-select,
-textarea {
-    padding: 12px;
+select {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical;
-}
-
-label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
+    box-sizing: border-box;
 }
 
 input[type=submit] {
-    background-color: rgb(23, 162, 184);
+    width: 100%;
+    background-color: rgb(19, 132, 150);
     color: white;
-    padding: 7px 20px;
+    padding: 14px 20px;
+    margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
+input[type=submit]:hover {
+    background-color: rgb(19, 132, 150);
+}
 
-/*input[type=submit]:hover {
-    background-color: #45a049;
-}*/
-
-.container {
+.divform {
     border-radius: 5px;
+    background-color: #f2f2f2;
     padding: 20px;
 }
 
-.col-25 {
+.boton1 {
+    text-align: left !important;
+    margin-left: 0.5% !important;
+}
+
+.left {
     float: left;
-    width: 25%;
-    margin-top: 6px;
+    width: 45%;
 }
 
-.col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
+.right {
+    float: right;
+    width: 45%;
 }
 
-
-/* Clear floats after the columns */
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-
-@media screen and (max-width: 600px) {
-    .col-25,
-    .col-75,
-    input[type=submit] {
-        width: 100%;
-        margin-top: 0;
-    }
+.center {
+    float: inherit;
+    width: 45%;
 }
 
 
@@ -11272,31 +11257,31 @@ pre code {
 
 @media (min-width:576px) {
     .container {
-        max-width: 540px;
+        max-width: inherit;
     }
 }
 
 @media (min-width:768px) {
     .container {
-        max-width: 720px;
+        max-width: inherit;
     }
 }
 
 @media (min-width:992px) {
     .container {
-        max-width: 960px;
+        max-width: inherit;
     }
 }
 
 @media (min-width:1200px) {
     .container {
-        max-width: 1140px;
+        max-width: inherit;
     }
 }
 
 @media (min-width:1366px) {
     .container {
-        max-width: 1140px;
+        max-width: inherit;
         margin-top: 0%;
     }
 }
@@ -11314,7 +11299,6 @@ pre code {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    text-align: center;
 }
 
 .no-gutters {
@@ -12786,7 +12770,7 @@ textarea.form-control {
 }
 
 .form-group {
-    margin-bottom: -1rem;
+    margin-bottom: 1rem;
 }
 
 .form-text {
@@ -13030,7 +13014,7 @@ textarea.form-control.is-valid {
 .form-control.is-invalid~.invalid-tooltip,
 .was-validated .form-control:invalid~.invalid-feedback,
 .was-validated .form-control:invalid~.invalid-tooltip {
-    display: block
+    display: table-column-group;
 }
 
 .was-validated textarea.form-control:invalid,
@@ -13139,7 +13123,7 @@ textarea.form-control.is-invalid {
 }
 
 .form-inline .form-check {
-    width: 100%
+    width: 100%;
 }
 
 @media (min-width:576px) {
@@ -13150,7 +13134,7 @@ textarea.form-control.is-invalid {
         align-items: center;
         -ms-flex-pack: center;
         justify-content: center;
-        margin-bottom: 0
+        margin-bottom: 0;
     }
     .form-inline .form-group {
         display: -ms-flexbox;
@@ -16862,7 +16846,8 @@ a.close.disabled {
 @media (min-width:576px) {
     .modal-dialog {
         max-width: 500px;
-        margin: -1.25rem auto;
+        /*margin: -1.25rem auto;*/
+        margin: 0.25rem auto;
     }
     .modal-dialog-scrollable {
         max-height: calc(100% - 3.5rem)
@@ -21139,7 +21124,7 @@ a.text-dark:hover {
 /*===================================CSS LOGIN=================================================================*/
 
 .card-container.card {
-    max-width: 33%;
+    /*max-width: 33%;*/
     padding: 0px 9px;
     transform: translate(0%, 0%);
     background-color: rgb(0, 0, 0);
@@ -21811,3 +21796,9 @@ img.avatar {
     visibility: visible;
     opacity: 1;
 }
+
+
+/*=================================MODAL DE GUARDADO===========================================================================*/
+
+
+/* FIN Modal (background) */

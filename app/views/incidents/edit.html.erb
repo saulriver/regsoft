@@ -1,7 +1,7 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Editar incidencia</h1>
-   <hr>
-<br/><%= notice%>
+   <hr><%= notice%>
+
 <!--tabla principal-->
 <div class="row">
 <div class="col-md-12">
@@ -16,13 +16,12 @@
   <table class="table">
     <thead>
         <tr class="success btn-info active justify-content-center">
-          <th colspan="2"><h5><b style="color: orange">Ticket</b></h5></th>
+          <th colspan="2"><h5><b style="color: orange">N°/Incidencia</b></h5></th>
           <th><h6>Criticidad</h6></th>
           <th><h6>Aplicación</h6></th>
           <th><h6>Reporta</h6></th>
-          <th><h6>Incidencia</h6></th>
           <th><h6>ANS</h6></th>
-          <th><h6>Tiempo/Reporte</h6></th>
+          <th><h6>Enviada</h6></th>
           <th><h6>Descripción</h6></th>
           <th><h6>Estado</h6></th>
         </tr>
@@ -30,11 +29,10 @@
 
     <tbody>
       <tr class="text-center">
-        <td colspan="2"><%= @incident.id%></td>
+        <td colspan="2"><kbd><%= @incident.id%></kbd></td>
         <td><%= @incident.criticality.name %></td>
         <td><%= @incident.userapplication.applicationclient.application.name %></td>
         <td><%= @incident.user.name%></td>
-        <td><kbd><%= @incident.id%></kbd></td>
         <td><%= @incident.userapplication.applicationclient.servicelevel %>hrs</td>
         <td><%= @incident.created_at%></td>
         <td><%= @incident.description%></td>
@@ -54,12 +52,12 @@
 <br/>
 <!--tabla imagen reporte-->
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-7">
 <h5 class="text-left"><kbd>Imagén reporte incidencia</kbd></h5>
 <div class="modal-content text-center">
 <label class="form-group">
   <tbody>
-     <br/><br/>
+     <br/>
        <figure class="figure">
          <%= image_tag(@incident.picture_url, class: 'figure-img img-fluid rounded', alt: 'Image') if @incident.picture? %>
        </figure>
@@ -68,7 +66,7 @@
 </div>
 </div>
 <!--tabla imagen-->
-<div class="col-md-6">
+<div class="col-md-5">
   <!-- The Modal -->
     <div class="modal-dialog">
       <div class="modal-content">
@@ -79,68 +77,54 @@
 <!-- Modal body -->
   <div class="modal-body">
     <div class="modal-content tabcontent">
-        <div class="dialog">
-<%= simple_form_for(@incident) do |f| %>
+       <div class="dialog">
+        <%= simple_form_for(@incident) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-<form class="form-inline">
-    <label class="form-group col-md-6">
+<%= notice%>
+ <form>
     <figcaption class="figure-caption">
-      <%= f.association :userapplication, label_method: :lista_appclient, input_html: { class: "form-control mb-2 mr-sm-2"}%>
+      <%= f.association :userapplication, label_method: :lista_appclient %>
     </figcaption>
-    </label>
 
-    <label class="form-group col-md-4">
     <figcaption class="figure-caption">
-       <%= f.association :area, class: "form-control mb-2 mr-sm-2"%>
+       <%= f.association :area %>
     </figcaption>
-    </label>
 
-    <label class="form-group col-md-6">
     <figcaption class="figure-caption">
-       <%= f.association :criticality, class: "form-control mb-2 mr-sm-2" %>
+       <%= f.association :criticality %>
     </figcaption>
-    </label>
 
-    <br/>
-    <label class="form-group col-md-4">
     <figcaption class="figure-caption">
         <%= f.label :state %>
         <%= f.select :state, options_for_select([['Activo', true], ['Inactivo', false]]) %>
     </figcaption>
-    </label>
 
-    <br/><br/>
-    <div class="form-group col-md-12">
+    <label></label>
      <figcaption class="figure-caption">
-      <%= f.label :picture %><br/>
+      <%= f.label :picture %>
      </figcaption>
-       <%= f.file_field :picture, class: 'form-control'%>
-      <%= f.hidden_field :picture_cache %>
-    </div>
-<br/><br/>
-    <label class="form-group col-md-12">
+     <figcaption class="figure-caption">
+       <%= f.file_field :picture %>
+       <%= f.hidden_field :picture_cache %>
+      </figcaption>
+
+      <label></label>
     <figcaption class="figure-caption">
-      <%= f.input :description, placeholder: 'Describe la incidencia claramente.', class: "form-control mb-2 mr-sm-2"%>
+      <%= f.input :description, placeholder: 'Describe la incidencia claramente.' %>
     </figcaption>
-    </label>
-<br/><br/>
-  <label class="form-group col-md-6 text-right">
-     <%= f.submit 'Reportar', method: :new, data: { confirm: 'Desea Reportar la incidencia' }, class:"btn btn-info btn-md"%>
-  </label>
-
-  <label class="form-group col-md-3">
+    
+  <figcaption class="figure-caption">
      <%=f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_login.id}" }%>
-  </label>
+  </figcaption>
 
-<% end %>
-
-       </form>
-      </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+<%= f.submit 'Actualizar', method: :incidents_path, data: { confirm: 'Desea actualizar la incidencia' }, class:"btn btn-info btn-md"%>
+ </form>
+ <% end %>
+</div>
  </div>
+  </div>
+   </div>
+    </div>
+     </div>
+      </div>

@@ -1,7 +1,6 @@
 <br/><br/>
 <h1 style="color: #6c757d;">Usuario cliente</h1>
-<hr>
-<br/><%= notice %>
+<hr><%= notice %>
 
 
 <div class="row">
@@ -93,23 +92,40 @@
 </div>
 </div>
 
-<div class="col-sm-4"> 
-<div class="card">
-<h5><kbd>Asignar</kbd></h5>
-<div class="card-body">
-  <%= form_for @userclient, url: user_client_create_path do |f| %>
-     <%= f.hidden_field :user_id, :value => @user.id%>
-     <%= f.hidden_field :state, :value => true%>
-  <label class="form-group">
-    <%= f.label :client %>
-    <%= f.select :client_id, options_for_select(@clients.collect{ |client| [client.name, client.id] })%>
-  </label>
-    <br/><br/>
-    <%= f.submit "Guardar", class: "btn btn-info btn-block" %>
-  <% end %>
+<!--tabla editar-->
+<div class="col-sm-4">
+  <!-- The Modal -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+ <!-- Modal Header -->
+    <div class="modal-header">
+      <h5 class="modal-title"><kbd>Asignar</kbd></h5>
+    </div>
+<!-- Modal body -->
+  <div class="modal-body">
+    <div class="modal-content tabcontent">
+        <div class="dialog">
+        <%= simple_form_for(@userclient, url: user_client_create_path) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.hidden_field :user_id, :value => @user.id%>
+        <%= f.hidden_field :state, :value => true%>
 
+    <form>
+      <figcaption class="figure-caption">
+       <%= f.label :client %>
+        <%= f.select :client_id, options_for_select(@clients.collect{ |client| [client.name, client.id] })%>
+        </figcaption>
+
+      <%= f.submit "Guardar", method: :edit %>
+  </form>
+      </div>
+      <% end %>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
+<!--tabla editar-->
 

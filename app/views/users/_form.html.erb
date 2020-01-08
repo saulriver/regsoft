@@ -1,67 +1,68 @@
 <br/><br/>
-<h1 style="color: #6c757d;">Nuevo usuario</h1>
-<hr>
-<br/><%= notice%>
+<h1 style="color: #6c757d;">Usuario</h1>
+<hr><%= notice%>
 
-<div class="container">
- <div class="footer">
+<div class="row">
+  <div class="boton1">
     <%= link_to 'Regresar', users_path, class: "btn btn-info" %>
-  </div><br/>
-  <!-- The Modal -->
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
- <!-- Modal Header -->
-    <div class="modal-header">
+    </div>
+</div><br/>
+
+<div class="divform">
+ <div class="modal-header">
       <h4 class="modal-title"><kbd>Registrar</kbd></h4>
     </div>
-<!-- Modal body -->
-  <div class="modal-body">
-    <div class="modal-content tabcontent">
-        <div class="dialog">
-    <%= simple_form_for(@user) do |f| %>
+  <%= simple_form_for(@user) do |f| %>
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-      <form class="form-inline">
-          <label class="form-group col-md-4">
-          <%= f.input :name, class: "form-control mb-2 mr-sm-2", placeholder: "Nombre Usuario" %>
-          </label>
+  <form>
+    <div class="left">
+      <figcaption class="figure-caption">
+        <%= f.input :name, placeholder: "Nombre Usuario" %>
+        </figcaption>
+   </div>
 
-          <label class="form-group col-md-4">
-           <%= f.input :email, class: "form-control mb-2 mr-sm-2", placeholder: "Ej: user@domain.com" %>
-          </label>
+    <div class="right">
+      <figcaption class="figure-caption">
+           <%= f.input :email, placeholder: "Ej: user@domain.com" %>
+          </figcaption>
+    </div>
 
-          <label class="form-group col-md-3">
-          <%= f.association :role, class: "form-control mb-2 mr-sm-2" %>
-          </label>
+    <div class="left">
+      <figcaption class="figure-caption">
+            <%= f.input :username, placeholder: "Ej: nombre.apellido" %>
+         </figcaption>
+    </div>
 
-          <label class="form-group col-md-4">
-            <%= f.input :username, class: "form-control mb-2 mr-sm-2", placeholder: "Ej: nombre.apellido" %>
-          </label>
+    <div class="right">
+      <figcaption class="figure-caption">
+            <%= f.input :password, placeholder: "Minimo 6 caracteres" %>
+        </figcaption>
+    </div>
 
-          <label class="form-group col-md-4">
-            <%= f.input :password, class: "form-control mb-2 mr-sm-2", placeholder: "Minimo 6 caracteres" %>
-          </label>
+   <div class="left">
+      <figcaption class="figure-caption">
+          <%= f.association :role %>
+           </figcaption>
+    </div>
 
-          <label class="form-group col-md-3">
+    <!--<div class="right">
+      <figcaption class="figure-caption">
           <%= f.input :change_password, class: "form-control mb-2 mr-sm-2" %>
-          </label>
+        </figcaption>
+    </div> -->
 
-          <label class="form-group col-md-2">
+    <div class="right">
+      <figcaption class="figure-caption">
           <%= f.label :state%>
           <%= f.select :state, options_for_select([['Activo', true], ['Inactivo', false]]) %>
-          </label>
-
-
-        <label class="form-group">
-          <%= f.submit "Guardar", class: "btn btn-info btn-md" %>
-        </label>
-
-      <% end %>
-</form>
+        </figcaption>
     </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+    
+    <div class="center">
+          <%= f.submit "Guardar" %>
+      </div>
+</form>
+ <% end %>
+</div>

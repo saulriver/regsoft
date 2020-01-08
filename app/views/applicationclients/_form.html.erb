@@ -1,40 +1,54 @@
-<br/><br/><br/>
-<div class="modal-content tabcontent">
-  <div class="dialog">
+  <br/><br/>
+  <h1 style="color: #6c757d;">Aplicación cliente</h1>
+<hr><%= notice%>
+
+<div class="row">
+  <div class="boton1">
+    <%= link_to 'Regresar', clients_path, class: "btn btn-info" %>
+    </div>
+</div><br/>
+
+<div class="divform">
+ <div class="modal-header">
+      <h4 class="modal-title"><kbd>Registrar</kbd></h4>
+    </div>
   <%= simple_form_for(@applicationclient) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    
-        <div class="body">
         
-          <div class="form-group">
-          <%= f.association :application, class: "form-control input-lg" %>
-          </div>
+  <form class="form">
+    <div class="left">
+      <figcaption class="figure-caption">
+       <%= f.association :application %>
+         </figcaption>
+         </div>
 
-          <div class="form-group">
-          <%= f.association :client, class: "form-control input-lg" %>
-          </div>
+    <div class="right">
+      <figcaption class="figure-caption">
+        <%= f.association :client %>
+        </figcaption>
+        </div>
+       
+    <div class="left">
+      <figcaption class="figure-caption">
+          <%= f.input :servicelevel %>
+        </figcaption>
+        </div>
 
-          <div class="form-group">
-          <%= f.label :servicelevel %>
-          <%= f.input :servicelevel, class: "form-control input-lg" %>
-          </div>
-          
-
-          <div class="form-group col-md-4">
-            <%= f.label :state%>
+    <div class="right">
+      <figcaption class="figure-caption">
+         <%= f.label :state %>
             <%= f.select :state, options_for_select([['Activo', true], ['Inactivo', false]]) %>
+          </figcaption>
           </div>
 
-        </div>
+    <div class="center">
+      <%= f.submit "Guardar"%>
+      </div>
 
-        <div class="footer">
-          <%= f.submit "Guardar", class: "btn btn-primary btn-lg btn-block" %>
-          <br/>
-          <%= link_to 'Regresar', applicationclients_path, class: "btn btn-info btn-lg btn-block" %>
-        </div>
-        
-      <% end %>
+</form>
+  <% end %>
+      </div>
+      
+<!--tabla editar-->
 
-    </div>
-  </div>

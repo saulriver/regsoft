@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_12_23_142940) do
 
-  create_table "applicationclients", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "applicationclients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "application_id"
     t.bigint "client_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["user_id"], name: "index_applicationclients_on_user_id"
   end
 
-  create_table "applicationoperators", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "applicationoperators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "application_id"
     t.boolean "state"
@@ -35,21 +35,21 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["user_id"], name: "index_applicationoperators_on_user_id"
   end
 
-  create_table "applications", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.boolean "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.boolean "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "nit"
     t.string "name"
     t.string "reason"
@@ -61,14 +61,14 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "criticalities", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "criticalities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.boolean "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "incidentfiles", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "incidentfiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "incident_id"
     t.string "filetype"
     t.boolean "state"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["incident_id"], name: "index_incidentfiles_on_incident_id"
   end
 
-  create_table "incidentmanagements", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "incidentmanagements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "incident_id"
     t.datetime "datereport"
@@ -85,12 +85,11 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.boolean "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "picture"
     t.index ["incident_id"], name: "index_incidentmanagements_on_incident_id"
     t.index ["user_id"], name: "index_incidentmanagements_on_user_id"
   end
 
-  create_table "incidents", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "incidents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "area_id"
     t.bigint "userapplication_id"
     t.bigint "user_id"
@@ -107,7 +106,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["userapplication_id"], name: "index_incidents_on_userapplication_id"
   end
 
-  create_table "logins", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "logins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -118,7 +117,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "managefiles", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "managefiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "incidentmanagement_id"
     t.string "filetype"
     t.boolean "state"
@@ -127,14 +126,14 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["incidentmanagement_id"], name: "index_managefiles_on_incidentmanagement_id"
   end
 
-  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.boolean "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "userapplications", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "userapplications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "applicationclient_id"
     t.boolean "state"
@@ -144,7 +143,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["user_id"], name: "index_userapplications_on_user_id"
   end
 
-  create_table "userareas", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "userareas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "area_id"
     t.boolean "state"
@@ -154,7 +153,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["user_id"], name: "index_userareas_on_user_id"
   end
 
-  create_table "userclients", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "userclients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "client_id"
     t.bigint "user_id"
     t.boolean "state"
@@ -164,7 +163,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.index ["user_id"], name: "index_userclients_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.bigint "role_id"

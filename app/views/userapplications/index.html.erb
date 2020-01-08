@@ -1,7 +1,6 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Aplicación cliente</h1>
-  <hr>
-<br/><%= notice %>
+  <hr><%= notice %>
 
  <div class="row">
 <div class="col-sm-12">
@@ -75,7 +74,7 @@
         <td colspan="3"><kbd><%= userapplication.id %></kbd></td>
         <td><%= userapplication.applicationclient.client.name %></td>
         <td><%= userapplication.applicationclient.application.name %></td>
-        <td><%= userapplication.applicationclient.servicelevel %></td>
+        <td><%= userapplication.applicationclient.servicelevel %>hrs</td>
         <td>
           <% if userapplication.state %>
              <img src="/img/estado_activo_24.png" alt="Activo" />
@@ -97,26 +96,45 @@
 </table>
 </div>
 </div>
+<div id="spacing">
+    <%= paginate(@userapplications) %>
+</div>
 </div>
 
-<div class="col-sm-4"> 
-  <div class="card">
-  <h5><kbd>Asignar</kbd></h5>
-    <div class="card-body">
-      <%= form_for @userapplication, url: user_application_create_path do |f| %>
-         <%= f.hidden_field :user_id, :value => @user.id%>
+<!--tabla editar-->
+<div class="col-sm-4">
+  <!-- The Modal -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+ <!-- Modal Header -->
+    <div class="modal-header">
+      <h5 class="modal-title"><kbd>Asignar</kbd></h5>
+    </div>
+<!-- Modal body -->
+  <div class="modal-body">
+    <div class="modal-content tabcontent">
+        <div class="dialog">
+        <%= simple_form_for(@userapplication, url: user_application_create_path) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.hidden_field :user_id, :value => @user.id%>
         <%= f.hidden_field :state, :value => true%>
 
-      <label class="form-group">
+    <form>
+      <figcaption class="figure-caption">
         <%= f.label :applicationclient %>
-        <%= f.select :applicationclient_id, options_for_select(@applicationclients.collect{ |applicationclient| [[applicationclient.servicelevel,applicationclient.application.name], applicationclient.id] })%>
-      </label>
+        <%= f.select :applicationclient_id, options_for_select(@applicationclients.collect{ |applicationclient| [[applicationclient.application.name, applicationclient.servicelevel], applicationclient.id] })%>
+         </figcaption>
 
-        <br/><br/>
-        <%= f.submit "Enviar", class: "btn btn-info btn-block" %>
+      <%= f.submit "Guardar", method: :edit %>
+
+  </form>
+      </div>
       <% end %>
-
+      </div>
+     </div>
     </div>
+   </div>
   </div>
 </div>
-</div>
+<!--tabla editar-->

@@ -1,85 +1,75 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Nueva incidencia</h1>
-   <hr>
-<br/><%= notice%>
-
+<hr><%= notice%>
+   
 <div class="row">
-<div class="col-md-10">
- <div class="footer text-left">
+  <div class="boton1">
     <%= link_to 'Menú', vistareportes_path, class: "btn btn-info" %>
-  </div><br/>
-  <!-- The Modal -->
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
- <!-- Modal Header -->
-    <div class="modal-header">
+    </div>
+</div><br/>
+
+<div class="divform">
+ <div class="modal-header">
       <h4 class="modal-title"><kbd>Registrar</kbd></h4>
     </div>
-<!-- Modal body -->
-  <div class="modal-body">
-    <div class="modal-content tabcontent">
-        <div class="dialog">
-<%= simple_form_for(@incident) do |f| %>
-        <%= f.error_notification %>
-        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= simple_form_for(@incident) do |f| %>
+    <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<form class="form-inline">
-    <label class="form-group col-md-6">
+<form>
+  <div class="left">
+   <figcaption class="figure-caption">
+      <%= f.association :userapplication, collection: Userapplication.where(user_id: current_login.id).includes(:applicationclient), label_method: :lista_appclient, input_html: { class: "form-control mb-2 mr-sm-2"} %>
+   </figcaption>
+   </div>
+<label></label>
+   <div class="right">
     <figcaption class="figure-caption">
-      <%= f.association :userapplication, collection: Userapplication.where(user_id: current_login.id).includes(:applicationclient), label_method: :lista_appclient, input_html: { class: "form-control mb-2 mr-sm-2"}%>
+       <%= f.association :area %>
     </figcaption>
-    </label>
+   </div>
 
-    <label class="form-group col-md-6">
+   <div class="left">
     <figcaption class="figure-caption">
-       <%= f.association :area, class: "form-control mb-2 mr-sm-2"%>
+       <%= f.association :criticality %>
     </figcaption>
-    </label>
+   </div>
 
-    <label class="form-group col-md-4">
-    <figcaption class="figure-caption">
-       <%= f.association :criticality, class: "form-control mb-2 mr-sm-2" %>
-    </figcaption>
-    </label>
-
-    <br/><br/>
-    <label class="form-group col-md-4">
+   <div class="right">
     <figcaption class="figure-caption">
         <%= f.label :state %>
-        <%= f.select :state, options_for_select([['Activo', true], ['Inactivo', false]]) %>
+        <%= f.select :state,  options_for_select([['Activo', true], ['Inactivo', false]]) %>
     </figcaption>
-    </label>
+  </div>
 
-    <br/><br/>
-    <div class="form-group col-md-12">
-     <figcaption class="figure-caption">
-      <%= f.label :picture %><br/>
-     </figcaption>
-       <%= f.file_field :picture, class: 'form-control'%>
-       <%= f.hidden_field :picture_cache %>
-    </div>
-<br/><br/>
-    <label class="form-group col-md-12">
+   <div class="center">
     <figcaption class="figure-caption">
-      <%= f.input :description, placeholder: 'Describe la incidencia claramente.', class: "form-control mb-2 mr-sm-2"%>
+        <%= f.label :picture %><br/>
     </figcaption>
-    </label>
-<br/><br/>
-  <label class="form-group">
-     <%= f.submit 'Reportar', method: :new, data: { confirm: 'Desea Reportar la incidencia' }, class:"btn btn-info btn-md"%>
-  </label>
+    </div>
 
-  <label class="form-group col-md-3">
+   <div class="center">
+    <figcaption class="figure-caption">
+         <%= f.file_field :picture %>
+         <%= f.hidden_field :picture_cache %>
+     </figcaption>
+   </div>
+
+   <div class="right">
+    <figcaption class="figure-caption">
+         <%= f.input :description, placeholder: 'Describe la incidencia claramente.' %>
+    </figcaption>
+   </div>
+  <label></label>
+
+  <div class="center">
      <%=f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_login.id}" }%>
-  </label>
+  </div>
 
-<% end %>
+   <div class="center">
+    <%= f.submit 'Reportar', method: :new, data: { confirm: 'Incidencia lista para la gestión' } %>
+    </div>
 
-       </form>
-      </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+  </form>
+  <% end %>
+</div>

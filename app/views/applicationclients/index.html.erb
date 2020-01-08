@@ -1,7 +1,6 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Aplicación cliente ANS</h1>
-  <hr>
-<br/><%= notice%>
+  <hr><%= notice%>
 
 <div class="row">
 <div class="col-sm-12">
@@ -108,32 +107,52 @@
 </table>
 </div>
 </div>
+<div id="spacing">
+    <%= paginate(@clientapplicationclients) %>
+</div>
 </div>
 
-<div class="col-sm-4"> 
-<div class="card">
-<h5><kbd>Asignar</kbd></h5>
-<div class="card-body">
+<!--tabla editar-->
+<div class="col-sm-4">
+  <!-- The Modal -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+ <!-- Modal Header -->
+    <div class="modal-header">
+      <h5 class="modal-title"><kbd>Asignar</kbd></h5>
+    </div>
+<!-- Modal body -->
+  <div class="modal-body">
+    <div class="modal-content tabcontent">
+        <div class="dialog">
+        <%= simple_form_for(@applicationclient, url: client_application_client_create_path) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.hidden_field :user_id, :value => current_login.id%>
+        <%= f.hidden_field :client_id, :value => @client.id%>
+        <%= f.hidden_field :state, :value => true %>
+    <form>
+      <figcaption class="figure-caption">
+         <%= f.label :application %>
+         <%= f.select :application_id, options_for_select(@applications.collect{ |application| [application.name, application.id] })%>
+      </figcaption>
+       <label></label>
 
-  <%= form_for @applicationclient, url: client_application_client_create_path do |f| %>
-    <%= f.hidden_field :user_id, :value => 1%>
-     <%= f.hidden_field :client_id, :value => @client.id%>
-    <%= f.hidden_field :state, :value => true%>
+      <figcaption class="figure-caption">
+        <%= f.label :servicelevel %>
+        <%= f.number_field :servicelevel, :value => 1, min: 1, max: 80, step: 1 %>
+      </figcaption>
+       <label></label>
 
-    <label class="form-group">
-    <%= f.label :application %>
-    <%= f.select :application_id, options_for_select(@applications.collect{ |application| [application.name, application.id] })%>
-    </label>
-    
-    <label class="form-group">
-          <%= f.label :servicelevel %>
-          <%= f.number_field :servicelevel, :value => 1, min: 1, max: 80, step: 1 %>
-        </label>
-    <br/><br/>
-    <%= f.submit "Guardar", class: "btn btn-info btn-block" %>
-  <% end %>
+      <%= f.submit "Guardar" %>
 
+  </form>
+      </div>
+      <% end %>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
+<!--tabla editar-->

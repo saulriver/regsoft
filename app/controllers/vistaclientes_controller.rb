@@ -21,8 +21,8 @@ class VistaclientesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_vistacliente
+  def set_vistacliente
       @vistacliente = Vistacliente.all
-    end
-
   end
+
+end

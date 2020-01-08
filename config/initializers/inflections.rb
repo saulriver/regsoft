@@ -20,4 +20,5 @@ inflect.irregular 'vistarole', 'vistaroles'
 inflect.irregular 'vistacliente', 'vistaclientes'
 inflect.irregular 'vistareporte', 'vistareportes'
 inflect.irregular 'vistagestion', 'vistagestions'
+inflect.irregular 'criticality', 'criticalities'
 end

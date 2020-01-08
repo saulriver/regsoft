@@ -1,69 +1,68 @@
- <br/><br/>
-  <h1 style="color: #6c757d;">Nuevo cliente</h1> 
- <hr>
- <br/><%= notice%>
+  <br/><br/>
+  <h1 style="color: #6c757d;">Cliente</h1>
+<hr><%= notice%>
+   
+<div class="row">
+  <div class="boton1">
+    <%= link_to 'Regresar', clients_path, class: "btn btn-info" %>
+    </div>
+</div><br/>
 
-  <div class="container">
-  <div class="footer">
-       <%= link_to 'Regresar', clients_path, class: "btn btn-info btn-md" %>
-    </div><br/>
-  <!-- The Modal -->
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-  <!-- Modal Header -->
-    <div class="modal-header">
+<div class="divform">
+ <div class="modal-header">
       <h4 class="modal-title"><kbd>Registrar</kbd></h4>
     </div>
-        
-    <!-- Modal body -->
-        <div class="modal-body">
-          <div class="modal-content tabcontent">
-           <div class="dialog">
-              <%= simple_form_for(@client) do |f| %>
-               <%= f.error_notification %>
-               <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= simple_form_for(@client) do |f| %>
+    <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-      <form class="form-inline">
+  <form>
+  <div class="left">
+   <figcaption class="figure-caption">
+      <%= f.input :nit, placeholder: "Registre NIT" %>
+   </figcaption>
+   </div>
 
-          <label class="form-group col-md-4">
-          <%= f.input :nit, class: "form-control mb-2 mr-sm-2", placeholder: "Registre NIT" %>
-        </label>
+   <div class="right">
+   <figcaption class="figure-caption">
+      <%= f.input :name, placeholder: "Nombre Cliente" %>
+   </figcaption>
+   </div>
 
-        <label class="form-group col-md-4">
-          <%= f.input :name, class: "form-control mb-2 mr-sm-2", placeholder: "Nombre Cliente" %>
-        </label>
+   <div class="left">
+   <figcaption class="figure-caption">
+      <%= f.input :reason, placeholder: "Razon social" %>
+   </figcaption>
+   </div>
 
-          <label class="form-group col-md-3">
-          <%= f.input :reason, class: "form-control mb-2 mr-sm-2", placeholder: "Razon social" %>
-        </label>
+   <div class="right">
+    <figcaption class="figure-caption">
+      <%= f.input :addres, placeholder: "Dirección Domicilio" %>
+   </figcaption>
+   </div>
 
-          <label class="form-group col-md-4">
-          <%= f.input :addres, class: "form-control mb-2 mr-sm-2", placeholder: "Dirección Domicilio" %>
-        </label>
+   <div class="left">
+    <figcaption class="figure-caption">
+      <%= f.input :telephone, placeholder: "Telefono Fijo/Celular" %>
+   </figcaption>
+   </div>
 
-          <label class="form-group col-md-4">
-          <%= f.input :telephone, class: "form-control mb-2 mr-sm-2", placeholder: "Telefono Fijo/Celular" %>
-        </label>
+   <div class="right">
+     <figcaption class="figure-caption">
+      <%= f.input :contact, placeholder: "Numero de contacto" %>
+   </figcaption>
+   </div>
 
-          <label class="form-group col-md-3">
-          <%= f.input :contact, class: "form-control mb-2 mr-sm-2", placeholder: "Numero de contacto" %>
-        </label>
-
-        <label class="form-group col-md-2">
-            <%= f.label :state, :id=>"text-label" %><br />
-            <%= f.select :state, options_for_select([['Activo', true], ['Inactivo', false]]) %>
-        </label>
-
-      <label class="form-group">
-          <%= f.submit "Guardar", class: "btn btn-info btn-md" %>
-      </label>
-
-<% end %>
-</form>
-          </div>
-        </div>
-      </div>
+   <div class="left">
+   <figcaption class="figure-caption">
+        <%= f.label :state %>
+        <%= f.select :state,  options_for_select([['Activo', true], ['Inactivo', false]]) %>
+    </figcaption>
     </div>
-  </div>
+
+    <div class="center">
+      <%= f.submit 'Guardar', method: :new %>
+    </div>
+  </form>
+  <% end %>
 </div>

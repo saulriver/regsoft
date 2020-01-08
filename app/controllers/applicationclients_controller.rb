@@ -4,7 +4,7 @@ class ApplicationclientsController < ApplicationController
   # GET /applicationclients
   # GET /applicationclients.json
   def index
-    @applicationclients = Applicationclient.all
+    @applicationclients = Applicationclient.page(params[:page]).per(5)
   end
 
   # GET /applicationclients/1
@@ -41,7 +41,7 @@ class ApplicationclientsController < ApplicationController
   # PATCH/PUT /applicationclients/1.json
   def update
     respond_to do |format|
-      if @applicationclient.update(applicationclient_params)
+      if @applicationclient.update(applicationclient_params).page(params[:page]).per(5)
         format.html { redirect_to @applicationclient, notice: 'Applicationclient was successfully updated.' }
         format.json { render :show, status: :ok, location: @applicationclient }
       else
@@ -69,6 +69,6 @@ class ApplicationclientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def applicationclient_params
-      params.require(:applicationclient).permit(:user_id, :application_id, :client_id, :servicelevel, :state)
+      params.require(:applicationclient).permit(:user_id, :application_id, :client_id, :servicelevel, :state, :page)
     end
 end

@@ -4,7 +4,7 @@ class ApplicationoperatorsController < ApplicationController
   # GET /applicationoperators
   # GET /applicationoperators.json
   def index
-    @applicationoperators = Applicationoperator.all
+    @applicationoperators = Applicationoperator.page(params[:page]).per(5)
   end
 
   # GET /applicationoperators/1

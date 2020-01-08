@@ -3,12 +3,12 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
-  def index
+def index
     if params[:search].present?
     @users = User.where("name LIKE ?", "%#{params[:search]}%").page params[:page]
   else
     @users = User.page(params[:page]).per(5)
-end
+    end
 end
   # GET /users/1
   # GET /users/1.json
@@ -77,18 +77,15 @@ end
 
   end
 
-   def user_client_create
-
-    @clientuser = Userclient.new(userclient_params)
-
+def user_client_create
+@clientuser = Userclient.new(userclient_params)
     if @clientuser.save
       @user = User.find(params[:id])
       redirect_to user_client_index_path(@user.id)
-    else
+     else
       render json: { error: @clientuser.errors.full_messages }, status: :bad_request
     end
-
-  end
+end
 
   def user_client_destroy
 
@@ -102,23 +99,22 @@ end
 
   def user_area_index
     @user = User.find(params[:id])
-    @userareas = @user.userareas
+    @userareas = @user.userareas.page(params[:page]).per(5)
     @areas = Area.all
     @userarea = Userarea.new
     render "userareas/index"
   end
 
-   def user_area_create
-
-    @areauser = Userarea.new(userarea_params)
-
-    if @areauser.save
+def user_area_create
+  @areauser = Userarea.new(userarea_params)
+  if @areauser.save
       @user = User.find(params[:id])
+      @userareas = @user.userareas.page(params[:page]).per(5)
       redirect_to user_area_index_path(@user.id)
-      else
-        render json: { error: @areauser.errors.full_messages }, status: :bad_request
-    end
+  else
+    render json: { error: @areauser.errors.full_messages }, status: :bad_request
   end
+end
 
   def user_area_destroy
 
@@ -131,37 +127,31 @@ end
 
   def user_application_index
     @user = User.find(params[:id])
-    @userapplications = @user.userapplications
+    @userapplications = @user.userapplications.page(params[:page]).per(5)
     @client = @user.userclients.last
     @applicationclients = @client.client.applicationclients
-
     @userapplication = Userapplication.new
     render "userapplications/index"
 
   end
 
-   def user_application_create
-
-    @applicationuser = Userapplication.new(userapplication_params)
-
-    if @applicationuser.save
-      @user = User.find(params[:id])
-      redirect_to user_application_index_path(@user.id)
+def user_application_create
+@applicationuser = Userapplication.new(userapplication_params)
+  if @applicationuser.save
+   @user = User.find(params[:id])
+    redirect_to user_application_index_path(@user.id)
     else
-      render json: { error: @applicationuser.errors.full_messages }, status: :bad_request
-    end
-
+    render json: { error: @applicationuser.errors.full_messages }, status: :bad_request
   end
+end
 
-  def user_application_destroy
-
+def user_application_destroy
     @userapplication = Userapplication.find(params[:userapplication_id])
     if @userapplication.destroy
       @user = User.find(params[:id])
       redirect_to user_application_index_path(@user.id)
     end
-
-  end
+end
 
   def application_operator_index
 
@@ -173,54 +163,51 @@ end
 
   end
 
-   def application_operator_create
-
-    @applicationoperator = Applicationoperator.new(applicationoperator_params)
-
-    if @applicationoperator.save
-      @user = User.find(params[:id])
+def application_operator_create
+ @applicationoperator = Applicationoperator.new(applicationoperator_params)
+  if @applicationoperator.save
+     @user = User.find(params[:id])
       redirect_to application_operator_index_path(@user.id)
     else
       render json: { error: @applicationoperator.errors.full_messages }, status: :bad_request
-    end
-
   end
+end
 
-  def application_operator_destroy
-
+def application_operator_destroy
     @applicationoperator = Applicationoperator.find(params[:applicationoperator])
-    if @applicationoperator.destroy
-      @user = User.find(params[:id])
+  if @applicationoperator.destroy
+     @user = User.find(params[:id])
       redirect_to application_operator_index_path(@user.id)
-    end
-
   end
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
       @login = Login.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :role_id, :username, :password, :change_password, :state, :page, :search)
     end
+
     def login_params
       params.require(:user).permit(:email, :username, :password)
     end
 
-     def userclient_params
+    def userclient_params
        params.require(:userclient).permit(:user_id, :state, :client_id)
     end
+
     def userarea_params
       params.require(:userarea).permit(:user_id, :state, :area_id)
-   end
-   def userapplication_params
-      params.require(:userapplication).permit(:user_id, :state, :applicationclient_id)
-  end
+    end
 
-  def applicationoperator_params
+    def userapplication_params
+      params.require(:userapplication).permit(:user_id, :state, :applicationclient_id)
+    end
+
+    def applicationoperator_params
       params.require(:applicationoperator).permit(:user_id, :application_id, :state)
     end
 end

@@ -13,9 +13,7 @@ ruby "2.5.7"
 gem "rails", ">= 5.2.3"
 # Use sqlite3 as the database for Active Record
 #gem "mysql"
-group :development do
 gem "mysql2", '~> 0.5.3'
-end
 # Use Puma as the app server
 gem "puma", "~> 3.11"
 # Use SCSS for stylesheets
@@ -47,8 +45,7 @@ gem "jbuilder", "~> 2.5"
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.1.0", require: false
-
+gem 'bootsnap', require: false
 gem 'execjs'
 
 group :development, :test do

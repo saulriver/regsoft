@@ -4,7 +4,7 @@ class UserapplicationsController < ApplicationController
   # GET /userapplications
   # GET /userapplications.json
   def index
-    @userapplications = Userapplication.all
+    @userapplications = Userapplication.page(params[:page]).per(5)
   end
 
   # GET /userapplications/1

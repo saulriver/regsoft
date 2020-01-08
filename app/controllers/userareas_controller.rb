@@ -4,7 +4,7 @@ class UserareasController < ApplicationController
   # GET /userareas
   # GET /userareas.json
   def index
-    @userareas = Userarea.all
+    @userareas = Userarea.page(params[:page]).per(5)
     @users = User.all
     @areas = Area.all
   end

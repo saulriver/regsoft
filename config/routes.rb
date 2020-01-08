@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
   resources :managefiles
   resources :incidentmanagements
-  get 'incidentmanagements/gestionindex', to: 'incidentmanagements#gestionindex', as: "gestionindex"
   resources :incidentfiles
   resources :incidents
   resources :criticalities
@@ -22,7 +21,6 @@ Rails.application.routes.draw do
   resources :vistaclientes
   resources :vistareportes
   resources :vistagestions
-  resources :reportes
   get '/user/client/:id', to: 'users#user_client_index', as: "user_client_index"
   post '/user/client/:id', to: 'users#user_client_create', as: "user_client_create"
   get '/user/client/delete/:id', to: 'users#user_client_destroy', as: "user_client_destroy"
@@ -42,10 +40,6 @@ Rails.application.routes.draw do
   get '/client/application_client/:id', to: 'clients#client_application_client_index', as: "client_application_client_index"
   post '/client/application_client/:id', to: 'clients#client_application_client_create', as: "client_application_client_create"
   get '/client/application_client/delete/:id', to: 'clients#client_application_client_destroy', as: "client_application_client_destroy"
-
-  get '/incidentmanagement/incident/:id', to: 'incidentmanagements#management_incident_index', as: "management_incident_index"
-  post '/incidentmanagement/incident/:id', to: 'incidentmanagements#management_incident_create', as: "management_incident_create"
-  get '/incidentmanagement/incident/delete/:id', to: 'incidentmanagements#management_incident_destroy', as: "management_incident_destroy"
 
   devise_for :logins, controllers: {
     sessions: 'logins/sessions',

@@ -24,5 +24,4 @@ class VistarolesController < ApplicationController
     def set_vistarole
       @vistarole = Vistarole.all
     end
-
-  end
+end

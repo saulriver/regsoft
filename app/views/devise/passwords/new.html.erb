@@ -1,14 +1,17 @@
-<div class="container">
-<div class="card card-container">
-<h4>Regedin Software</h4>
+<div class="bg-image-login"></div>
+<div class="bg-text-login">
+<div>
+
+<h6 class="modal-title"><kbd>Reestablecer contraseña</kbd></h6>
 <div class="imgcontainer">
      <%= image_tag "/img/login.png", :alt=>"Contraseña" %>
-  </div>
-  <br/>
+  </div><br/>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
+
 <form class="form-signin">
+
 <% flash.each do |key, value| %>
     <a>
       <% if key == "alert"%>
@@ -20,9 +23,11 @@
     </a>
 <% end %>
 
-<%= f.label "Correo", :id=>"text-label" %><br />
-    <%= f.email_field :email, class:"form-control", required: true, :placeholder=> "ejemplo@gmail.com", autofocus: true, input_html: { autocomplete: "off" } %>
-<br/>
+  <figcaption class="figure-caption">
+      <%= f.label "Correo", :id=>"text-label" %><br />
+      <%= f.email_field :email, class:"form-control", required: true, :placeholder=> "ejemplo@gmail.com", autofocus: true, input_html: { autocomplete: "off" } %>
+    </figcaption>
+
     <%= f.button :submit, "Resetear contraseña", class:'btn btn-info btn-lg btn-block' %>
     <br/>
 
@@ -31,6 +36,6 @@
 <% end %>
 
 </form>
-</div><!--div card card container-->
 <% end %>
+</div><!--div card card container-->
 </div><!--div container-->
