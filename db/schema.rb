@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_142940) do
+ActiveRecord::Schema.define(version: 2020_01_08_233600) do
 
   create_table "applicationclients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_142940) do
     t.boolean "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
     t.index ["incident_id"], name: "index_incidentmanagements_on_incident_id"
     t.index ["user_id"], name: "index_incidentmanagements_on_user_id"
   end

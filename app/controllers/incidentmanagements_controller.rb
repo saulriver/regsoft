@@ -9,7 +9,7 @@ class IncidentmanagementsController < ApplicationController
     if params[:search].present?
       @incidentmanagements = Incidentmanagement.where("incident_id LIKE ?", "%#{params[:search]}%").page params[:page]  
     else
-      @incidentmanagements = Incidentmanagement.page(params[:page]).per(5)
+      @incidentmanagements = Incidentmanagement.order("incidentmanagements.id DESC").page(params[:page]).per(5)
       respond_to do |format|#parametro para mostrar en pdf
       format.html
       format.json
@@ -20,7 +20,7 @@ class IncidentmanagementsController < ApplicationController
   # GET /incidentmanagements/1
   # GET /incidentmanagements/1.json
   def show
-    @incident.picture
+    @incidentmanagement.picture
   end
 
   # GET /incidentmanagements/new
@@ -31,6 +31,7 @@ class IncidentmanagementsController < ApplicationController
   # GET /incidentmanagements/1/edit
   def edit
     @incidentmanagement = Incidentmanagement.find(params[:id])
+    @incidentmanagement.incident.picture
   end
 
   # POST /incidentmanagements
@@ -51,9 +52,6 @@ class IncidentmanagementsController < ApplicationController
   # PATCH/PUT /incidentmanagements/1
   # PATCH/PUT /incidentmanagements/1.json
   def update
-    @incidentmanagement.picture.url # => '/url/to/file.png'
-    @incidentmanagement.picture.current_path # => 'path/to/file.png'
-    @incidentmanagement.picture_identifier # => 'file.png'
     respond_to do |format|
       if @incidentmanagement.update(incidentmanagement_params)
         format.html { redirect_to edit_incidentmanagement_path(@incidentmanagement), notice: 'Incidentmanagement was successfully updated.' }
@@ -83,7 +81,7 @@ class IncidentmanagementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incidentmanagement_params
-      params.require(:incidentmanagement).permit(:user_id, :incident_id, :datereport, :description, :state, :picture, :picture_cache, :picture_url, :search, :page, :file)
+      params.require(:incidentmanagement).permit(:user_id, :incident_id, :datereport, :description, :state, :picture, :picture_identifier, :search, :page)
     end
 
     def authenticate_role_user

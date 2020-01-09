@@ -21797,7 +21797,42 @@ img.avatar {
     opacity: 1;
 }
 
-
+.btn1-group1{
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-inline: auto;
+    margin-right: 139px;
+    margin-left: 198px;
+    margin-inline-end: 17px;
+    margin-top: -58px;
+    font-size: 0.70rem;
+}
+.btn2-group2{
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-inline: auto;
+    margin-right: 139px;
+    margin-left: 71px;
+    margin-inline-end: 17px;
+    margin-top: -58px;
+    font-size: 0.70rem;
+}
+.btn3-group3{
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-inline: auto;
+    margin-right: 139px;
+    margin-left: 71px;
+    margin-inline-end: 17px;
+    margin-top: -58px;
+    font-size: 0.70rem;
+}
 /*=================================MODAL DE GUARDADO===========================================================================*/
 
 

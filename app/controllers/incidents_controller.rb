@@ -7,7 +7,7 @@ class IncidentsController < ApplicationController
   # GET /incidents
   # GET /incidents.json
   def index
-    @incidents = Incident.page(params[:page]).per(5)
+    @incidents = Incident.order("incidents.id DESC").page(params[:page]).per(5)
     if params[:q].present?
       @incidents = @incidents.joins(:area, userapplication: [{applicationclient: :application}]).where("applications.name like :q or areas.name like :q", q: "%#{params[:q]}%").page params[:page]
       # flash[:success] = "Busqueda correctamente"
@@ -31,6 +31,8 @@ class IncidentsController < ApplicationController
 
   # GET /incidents/1/edit
   def edit
+    @incident = Incident.find(params[:id])
+    @incident.picture
   end
 
   # POST /incidents
@@ -40,12 +42,14 @@ class IncidentsController < ApplicationController
     @user = User.joins(:userareas).where("userareas.area_id = #{@incident.area_id}").sample
     respond_to do |format|
       if @incident.save
-        @incidentmanagement = Incidentmanagement.create(user_id: @user, incident_id: @incident)
-        format.html { redirect_to new_incident_path(@incident), notice: 'Incident was successfully created.' }
-        format.json { render :show, status: :created, location: @incident }
-      else
-        format.html { render :new }
-        format.json { render json: @incident.errors, status: :unprocessable_entity }
+        @incidentmanagement = Incidentmanagement.create(user: @user, incident: @incident)
+        if @incidentmanagement.save
+          format.html { redirect_to new_incident_path(@incident), notice: 'Incident was successfully created.' }
+          format.json { render :show, status: :created, location: @incident }
+        else
+          format.html { render :new }
+          format.json { render json: @incident.errors, status: :unprocessable_entity }  
+        end
       end
     end
   end
@@ -53,9 +57,6 @@ class IncidentsController < ApplicationController
   # PATCH/PUT /incidents/1
   # PATCH/PUT /incidents/1.json
   def update
-    @incident.picture.url # => '/url/to/file.png'
-    @incident.picture.current_path # => 'path/to/file.png'
-    @incident.picture_identifier # => 'file.png'
     respond_to do |format|
       if @incident.update(incident_params)
         format.html { render :edit, notice: 'Incident was successfully updated.' }
@@ -85,7 +86,7 @@ class IncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incident_params
-      params.require(:incident).permit(:user_id, :area_id, :userapplication_id, :criticality_id, :datereport, :description, :state, :application_id, :applicationclient_id, :picture, :picture_cache, :picture_url, :page, :file)
+      params.require(:incident).permit(:user_id, :area_id, :userapplication_id, :criticality_id, :datereport, :description, :state, :application_id, :applicationclient_id, :picture, :picture_identifier, :page)
     end
 
     def authenticate_role_user
