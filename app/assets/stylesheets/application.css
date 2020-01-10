@@ -21804,10 +21804,11 @@ img.avatar {
     vertical-align: middle;
     margin-inline: auto;
     margin-right: 139px;
-    margin-left: 198px;
+    margin-left: 231px;
     margin-inline-end: 17px;
-    margin-top: -58px;
-    font-size: 0.70rem;
+    margin-top: -26px;
+    font-size: 0.75rem;
+    border-radius: 50%;
 }
 .btn2-group2{
     position: relative;
@@ -21816,10 +21817,11 @@ img.avatar {
     vertical-align: middle;
     margin-inline: auto;
     margin-right: 139px;
-    margin-left: 71px;
+    margin-left: 356px;
     margin-inline-end: 17px;
-    margin-top: -58px;
-    font-size: 0.70rem;
+    margin-top: -26px;
+    font-size: 0.75rem;
+    border-radius: 50%;
 }
 .btn3-group3{
     position: relative;
@@ -21828,10 +21830,30 @@ img.avatar {
     vertical-align: middle;
     margin-inline: auto;
     margin-right: 139px;
-    margin-left: 71px;
+    margin-left: 491px;
     margin-inline-end: 17px;
-    margin-top: -58px;
-    font-size: 0.70rem;
+    margin-top: -26px;
+    font-size: 0.75rem;
+    border-radius: 50%;
+}
+
+.p1{
+    margin-top: -35px;
+    margin-left: 260px;
+    color: #6c757d;
+    opacity: 0.7;
+}
+.p2{
+    margin-top: -64px;
+    margin-left: 316px;
+    color: #6c757d;
+    opacity: 0.5;
+}
+.p3{
+    margin-top: -64px;
+    margin-left: 449px;
+    color: #6c757d;
+    opacity: 0.5;
 }
 /*=================================MODAL DE GUARDADO===========================================================================*/
 

@@ -15,12 +15,15 @@
 <h5 class="text-left"><kbd>Listado reportes</kbd></h5>
 
 <!--botones de explicacion-->
-<div class="container">
-<kbd class="btn1-group1 btn btn-danger text-right">Abierto</kbd>
-<kbd class="btn2-group2 btn btn-warning text-right">Pendiente</kbd>
-<kbd class="btn3-group3 btn btn-success text-right">Cerrado</kbd>
+<div class="row p1 text-left">
+<kbd class="btn-group btn btn-danger btn-sm", title="Poco tiempo" >P</kbd>
+&nbsp; &nbsp;
+<kbd class="btn-group btn btn-warning btn-sm", title="Bien de tiempo" >B</kbd>
+&nbsp; &nbsp;
+<kbd class="btn-group btn btn-success btn-sm", title="Sobre el tiempo" >S</kbd>
 </div>
 <!--botones de explicacion-->
+
 <div class="modal-content text-center">
 <div class="table-responsive">
 <table class="table">
@@ -36,7 +39,7 @@
       <th><h6>Hrs/ANS</h6></th>
       <th><h6>Tiempo/Reporte</h6></th>
       <th><h6>Descripción</h6></th>
-      <th><h6>Estado/Reporte</h6></th>
+      <th><h6>Estado</h6></th>
     </tr>
   </div>
 </thead>
@@ -50,7 +53,7 @@
          <%= image_tag "/img/gestionar_64.png", :title=>"Gestionar incidencia" %>
          <% end %>
         </td>
-        <td><kbd class="btn-group btn btn-danger"><%= incident.id %></kbd></td>
+        <td><kbd><%= incident.id %></kbd></td>
         <td><%= incident.criticality.name %></td>
         <td><%= incident.userapplication.applicationclient.client.name %></td>
         <td><%= incident.user.name %></td>

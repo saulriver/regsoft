@@ -24,13 +24,14 @@
       <th><h6>Criticidad</h6></th>
       <th><h6>Cliente</h6></th>
       <th><h6>Reporta</h6></th>
+      <th><h6>Gestiona</h6></th>
       <th><h6>Aplicación</h6></th>
       <th><h6>Hrs/ANS</h6></th>
-      <th><h6>Tiempo/Gestión</h6></th>
-      <th><h6>Tiempo/Reporte</h6></th>
+      <th><h6>Hrs/Gestión</h6></th>
+      <th><h6>Hrs/Reporte</h6></th>
       <th><h6>Descripción</h6></th>
       <th><h6>Ver archivos</h6></th>
-      <th><h6>Estado/Reporte</h6></th>
+      <th><h6>Estado gestión</h6></th>
     </tr>
   </div>
 </thead>
@@ -40,25 +41,27 @@
   <tbody>
     <div class="row">
       <tr class="text-center">
-        <td colspan="3"><kbd><%= incidentmanagement.incident.id %></kbd></td>
+        <td colspan="3">
+        <kbd><%= incidentmanagement.incident.id %></kbd></td>
         <td><%= incidentmanagement.incident.criticality.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.client.name %></td>
         <td><%= incidentmanagement.incident.user.name %></td>
+        <td><%= incidentmanagement.user.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.application.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.servicelevel %>hrs</td>
         <td><%= incidentmanagement.updated_at %></td>
-        <td><%= incidentmanagement.incident.created_at %></td>
-        <td><%= incidentmanagement.incident.description %></td>
+        <td><%= incidentmanagement.incident.created_at.in_time_zone %></td>
+        <td><%= incidentmanagement.description %></td>
         <td><%= link_to incidentmanagement_path(incidentmanagement.id) do %>
             <%= image_tag "/img/gallery_24.png", :title=>"Archivos" %>
           <% end %>
           </td>
         <td>
-          <% if incidentmanagement.incident.state %>
-             <img src="/img/estado_activo_24.png" alt="Activo" />
-          <% else %>           
-             <img src="/img/estado_falso_24.png" alt="Inactivo" />
-          <% end %>
+          <% if incidentmanagement.state %>
+               <p style="color:#218838;"><b>Cerrado</b></p>
+            <% else %>
+              <p style="color:#c82333;"><b>Abierto</b></p>
+           <%end%>
         </td>
         <!--<td>
            <%comment= link_to incidentmanagement, method: :delete, data: { confirm: 'Desea eliminar?', remote: true, class:"modal-content" } do %>

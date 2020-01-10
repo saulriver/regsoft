@@ -20,7 +20,7 @@
           <th><h6>Aplicación</h6></th>
           <th><h6>Cliente</h6></th>
           <th><h6>Reporta</h6></th>
-          <th><h6>Tiempo/Reporte</h6></th>
+          <th><h6>Hrs/Reporte</h6></th>
           <th><h6>Descripción</h6></th>
           <th><h6>Estado</h6></th>
         </tr>
@@ -28,7 +28,8 @@
 
     <tbody>
       <tr class="text-center">
-        <td colspan="2"><kbd><%= @incidentmanagement.incident.id%></kbd></td>
+        <td colspan="2">
+        <kbd><%= @incidentmanagement.incident.id %></kbd></td>
         <td><%= @incidentmanagement.incident.criticality.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.application.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.client.name %></td>
@@ -87,9 +88,15 @@
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     
     <form>
-      <figcaption class="figure-caption">
+
+    <figcaption class="figure-caption">
+        <%= f.label :state %>
+        <%= f.select :state,  options_for_select([['Cerrado', true], ['Abierto', false]]) %>
+    </figcaption>
+
+    <figcaption class="figure-caption">
          <%=f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_login.id}" }%>
-      </figcaption>
+    </figcaption>
 
      <figcaption class="figure-caption">
        <%= f.label :picture %>
