@@ -13,7 +13,7 @@ class IncidentsController < ApplicationController
       # flash[:success] = "Busqueda correctamente"
      # else
      #   flash[:alert] = "Problemas con la grabación"
-     @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").page(params[:page]).per(5)
+     @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.id DESC").page(params[:page]).per(5)
     end
   end
 

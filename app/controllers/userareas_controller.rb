@@ -58,7 +58,7 @@ class UserareasController < ApplicationController
   def destroy
     @userarea.destroy
     respond_to do |format|
-      format.html { redirect_to user_area_destroy_path(), notice: 'Userarea was successfully destroyed.' }
+      format.html { redirect_to users_path(), notice: 'Userarea was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

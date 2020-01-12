@@ -27,17 +27,17 @@
       <th><h6>Gestiona</h6></th>
       <th><h6>Aplicación</h6></th>
       <th><h6>Hrs/ANS</h6></th>
-      <th><h6>Hrs/Gestión</h6></th>
       <th><h6>Hrs/Reporte</h6></th>
+      <th><h6>Hrs/Gestión</h6></th>
       <th><h6>Descripción</h6></th>
       <th><h6>Ver archivos</h6></th>
-      <th><h6>Estado gestión</h6></th>
+      <th><h6>Gestión</h6></th>
     </tr>
   </div>
 </thead>
 
   <% @incidentmanagements.each do |incidentmanagement| %>
-
+    
   <tbody>
     <div class="row">
       <tr class="text-center">
@@ -49,12 +49,12 @@
         <td><%= incidentmanagement.user.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.application.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.servicelevel %>hrs</td>
-        <td><%= incidentmanagement.updated_at %></td>
-        <td><%= incidentmanagement.incident.created_at.in_time_zone %></td>
+        <td><b style="color:#c82333;"><%= incidentmanagement.incident.created_at.in_time_zone %></b></td>
+        <td><b style="color:#218838;"><%= incidentmanagement.updated_at.in_time_zone %></b></td>
         <td><%= incidentmanagement.description %></td>
         <td><%= link_to incidentmanagement_path(incidentmanagement.id) do %>
             <%= image_tag "/img/gallery_24.png", :title=>"Archivos" %>
-          <% end %>
+             <% end %>
           </td>
         <td>
           <% if incidentmanagement.state %>

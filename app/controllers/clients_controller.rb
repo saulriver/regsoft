@@ -81,12 +81,22 @@ def client_application_client_create
    @clientapplicationclients = @client.applicationclients.page(params[:page]).per(5)
    @applications = Application.all
    @clientapplicationclient = Applicationclient.new
-    render "applicationclients/index"
+    render "applicationclients/index", notice: 'Applicationclient was successfully created.'
   else
     format.json { render json: @clientapplicationclient.errors, status: :unprocessable_entity }
   end
 end
 
+def client_application_client_destroy
+  @applicationclient = Applicationclient.find(applicationclient_params)
+  if @applicationclient.destroy
+   @client = Client.find(params[:id]) 
+    respond_to do |format|#parametro para mostrar en pdf
+      format.html { render "client/index", notice: 'Application client was not successfully destroyed'}
+      format.json {}      
+   end
+  end
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client

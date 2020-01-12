@@ -39,8 +39,6 @@
         <td>
           <% if @incident.state %>
              <img src="/img/estado_activo_24.png" alt="Activo" />
-          <% else %>
-             <img src="/img/estado_falso_24.png" alt="Inactivo" />
           <% end %>
         </td>
        </tr>
@@ -77,7 +75,7 @@
 <!-- Modal body -->
   <div class="modal-body">
     <div class="modal-content tabcontent">
-       <div class="dialog">
+       <div class="dialog kbd1">
         <%= simple_form_for(@incident) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -97,7 +95,7 @@
 
     <figcaption class="figure-caption">
         <%= f.label :state %>
-        <%= f.select :state, options_for_select([['Activo', true], ['Inactivo', false]]) %>
+        <%= f.select :state, options_for_select([['Activo', true]]) %>
     </figcaption>
 
     <label></label>

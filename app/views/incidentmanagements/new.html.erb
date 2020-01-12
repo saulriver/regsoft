@@ -35,9 +35,10 @@
       <th><h6>Criticidad</h6></th>
       <th><h6>Cliente</h6></th>
       <th><h6>Reporta</h6></th>
+      <th><h6>Área</h6></th>
       <th><h6>Aplicación</h6></th>
       <th><h6>Hrs/ANS</h6></th>
-      <th><h6>Tiempo/Reporte</h6></th>
+      <th><h6>Hrs/Reporte</h6></th>
       <th><h6>Descripción</h6></th>
       <th><h6>Estado</h6></th>
     </tr>
@@ -57,6 +58,7 @@
         <td><%= incident.criticality.name %></td>
         <td><%= incident.userapplication.applicationclient.client.name %></td>
         <td><%= incident.user.name %></td>
+        <td><%= incident.area.name %></td>
         <td><%= incident.userapplication.applicationclient.application.name %></td>
         <td><%= incident.userapplication.applicationclient.servicelevel %>hrs</td>
         <td><%= incident.created_at %></td>

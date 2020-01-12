@@ -56,7 +56,7 @@ class ApplicationoperatorsController < ApplicationController
   def destroy
     @applicationoperator.destroy
     respond_to do |format|
-      format.html { redirect_to applicationoperators_url, notice: 'Eliminado.' }
+      format.html { redirect_to users_url, notice: 'Application Operator was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -54,9 +54,10 @@ class ApplicationclientsController < ApplicationController
   # DELETE /applicationclients/1
   # DELETE /applicationclients/1.json
   def destroy
+    @applicationclient = Applicationclient.find(params[:id])
     @applicationclient.destroy
     respond_to do |format|
-      format.html { redirect_to applicationclients_url, notice: 'Applicationclient was successfully destroyed.' }
+      format.html { redirect_to clients_path(:id), notice: 'Applicationclient was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

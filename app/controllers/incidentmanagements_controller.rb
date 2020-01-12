@@ -7,12 +7,13 @@ class IncidentmanagementsController < ApplicationController
   # GET /incidentmanagements.json
   def index
     if params[:search].present?
-      @incidentmanagements = Incidentmanagement.where("incident_id LIKE ?", "%#{params[:search]}%").page params[:page]  
+      @incidentmanagements = Incidentmanagement.where("incident_id LIKE ?", "%#{params[:search]}%").page params[:page]
     else
+      @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.id DESC").page(params[:page]).per(5)
       @incidentmanagements = Incidentmanagement.order("incidentmanagements.id DESC").page(params[:page]).per(5)
-      respond_to do |format|#parametro para mostrar en pdf
-      format.html
-      format.json
+      respond_to do |format|
+      format.html{}
+      format.json{}
       end
     end
   end

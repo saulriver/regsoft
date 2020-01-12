@@ -110,20 +110,12 @@ def user_area_create
   if @areauser.save
       @user = User.find(params[:id])
       @userareas = @user.userareas.page(params[:page]).per(5)
-      redirect_to user_area_index_path(@user.id)
+      redirect_to user_area_index_path(@user.id), notice: 'Userarea was successfully created.'
   else
     render json: { error: @areauser.errors.full_messages }, status: :bad_request
   end
 end
 
-  def user_area_destroy
-
-    @userarea = Userarea.find(params[:userarea_id])
-    if @userarea.destroy
-      @user = User.find(params[:id])
-      redirect_to user_area_index_path(@user.id)
-    end
-  end
 
   def user_application_index
     @user = User.find(params[:id])
@@ -132,7 +124,6 @@ end
     @applicationclients = @client.client.applicationclients
     @userapplication = Userapplication.new
     render "userapplications/index"
-
   end
 
 def user_application_create
@@ -149,7 +140,10 @@ def user_application_destroy
     @userapplication = Userapplication.find(params[:userapplication_id])
     if @userapplication.destroy
       @user = User.find(params[:id])
-      redirect_to user_application_index_path(@user.id)
+      respond_to do |format|#parametro para mostrar en pdf
+        format.html { render "users/index", notice: 'Userapplication not destroyed'}
+        format.json {}      
+     end
     end
 end
 

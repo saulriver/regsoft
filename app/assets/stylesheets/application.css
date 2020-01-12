@@ -381,6 +381,11 @@ samp {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-size: 1em;
 }
+.kbd1,
+samp {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 1em;
+}
 
 pre {
     margin-top: 0;
@@ -12290,7 +12295,7 @@ pre code {
 
 .table td,
 .table th {
-    padding: .75rem;
+    padding: .7rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6
 }
@@ -20738,7 +20743,10 @@ button.bg-dark:hover {
     text-align: center!important;
     margin-right: 772px;
 }
-
+.trb{
+    text-align: center!important;
+    margin-right: 772px;
+}
 @media (min-width:576px) {
     .text-sm-left {
         text-align: left!important
@@ -21839,7 +21847,7 @@ img.avatar {
 
 .p1{
     margin-top: -35px;
-    margin-left: 260px;
+    margin-left: 240px;
     color: #6c757d;
     opacity: 0.7;
 }

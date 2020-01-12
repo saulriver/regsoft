@@ -55,9 +55,10 @@ class UserapplicationsController < ApplicationController
   # DELETE /userapplications/1
   # DELETE /userapplications/1.json
   def destroy
+    @userapplication = Userapplication.find(params[:id])
     @userapplication.destroy
     respond_to do |format|
-      format.html { redirect_to userapplications_url, notice: 'Userapplication was successfully destroyed.' }
+      format.html { redirect_to users_path(:id), notice: 'Userapplication was not successfully destroyed.'}
       format.json { head :no_content }
     end
   end
