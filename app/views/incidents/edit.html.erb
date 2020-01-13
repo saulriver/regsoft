@@ -1,6 +1,13 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Editar incidencia</h1>
-   <hr><%= notice%>
+   <hr>
+
+ <% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
 
 <!--tabla principal-->
 <div class="row">
@@ -9,6 +16,13 @@
     <%= link_to 'Regresar', incidents_path, class: "btn btn-info" %>
     <%= link_to 'Menú', vistareportes_path, class: "btn btn-info" %>
   </div><br/>
+
+  <% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
   
 <h5 class="text-left"><kbd>Incidencia reportada</kbd></h5>
 <div class="modal-content text-center">
@@ -79,7 +93,7 @@
         <%= simple_form_for(@incident) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-<%= notice%>
+
  <form>
     <figcaption class="figure-caption">
       <%= f.association :userapplication, label_method: :lista_appclient %>
@@ -116,7 +130,8 @@
      <%=f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_login.id}" }%>
   </figcaption>
 
-<%= f.submit 'Actualizar', method: :incidents_path, data: { confirm: 'Desea actualizar la incidencia' }, class:"btn btn-info btn-md"%>
+  <%= f.submit 'Actualizar', method: :edit, data: { confirm: 'Desea actualizar la incidencia' }, class:"btn btn-info btn-md"%>
+ 
  </form>
  <% end %>
 </div>

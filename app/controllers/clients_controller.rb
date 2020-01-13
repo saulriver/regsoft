@@ -32,7 +32,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to clients_path(@client), notice: 'Cliente guardado correctamente.' }
+        format.html { redirect_to clients_path(@client), info: 'Cliente guardado correctamente.' }
         format.json { render :show, status: :created, location: @client }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
   def update
     respond_to do |format|
       if @client.update(client_params)
-        format.html { redirect_to clients_path(@client), notice: 'Cliente actualizado correctamente.' }
+        format.html { redirect_to clients_path(@client), success: 'Cliente actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Cliente eliminado correctamente.' }
+      format.html { redirect_to clients_url, danger: 'Cliente eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

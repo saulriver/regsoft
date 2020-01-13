@@ -28,7 +28,7 @@ class IncidentfilesController < ApplicationController
 
     respond_to do |format|
       if @incidentfile.save
-        format.html { redirect_to @incidentfile, notice: 'Incidentfile was successfully created.' }
+        format.html { redirect_to @incidentfile, info: 'Incidentfile was successfully created.' }
         format.json { render :show, status: :created, location: @incidentfile }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class IncidentfilesController < ApplicationController
   def update
     respond_to do |format|
       if @incidentfile.update(incidentfile_params)
-        format.html { redirect_to @incidentfile, notice: 'Incidentfile was successfully updated.' }
+        format.html { redirect_to @incidentfile, success: 'Incidentfile was successfully updated.' }
         format.json { render :show, status: :ok, location: @incidentfile }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class IncidentfilesController < ApplicationController
   def destroy
     @incidentfile.destroy
     respond_to do |format|
-      format.html { redirect_to incidentfiles_url, notice: 'Incidentfile was successfully destroyed.' }
+      format.html { redirect_to incidentfiles_url, danger: 'Incidentfile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

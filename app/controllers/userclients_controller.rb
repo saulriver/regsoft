@@ -30,7 +30,7 @@ class UserclientsController < ApplicationController
     Rails.logger.debug("ID Usuario: #{@userclient.user.name}")
     
       if @userclient.save
-        format.html { redirect_to @userclient, notice: 'Userclient was successfully updated.' }
+        format.html { redirect_to @userclient, info: 'Userclient was successfully updated.' }
         format.json { render :show, status: :ok, location: @userclient }
        render json: @userclient
       else
@@ -44,7 +44,7 @@ class UserclientsController < ApplicationController
   def update
     respond_to do |format|
       if @userclient.update(userclient_params)
-        format.html { redirect_to @userclient, notice: 'Userclient was successfully updated.' }
+        format.html { redirect_to @userclient, success: 'Userclient was successfully updated.' }
         format.json { render :show, status: :ok, location: @userclient }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class UserclientsController < ApplicationController
    
     @userclient.destroy
     respond_to do |format|
-      format.html { redirect_to users_path(), notice:'Userclient was successfully destroyed.' }
+      format.html { redirect_to users_path(), danger:'Userclient was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,12 +1,19 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Nueva incidencia</h1>
-<hr><%= notice%>
+<hr>
    
 <div class="row">
   <div class="boton1">
     <%= link_to 'Menú', vistareportes_path, class: "btn btn-info" %>
     </div>
 </div><br/>
+
+<% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
 
 <div class="divform">
  <div class="modal-header">
@@ -17,6 +24,7 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
 <form>
+
   <div class="left">
    <figcaption class="figure-caption">
       <%= f.association :userapplication, collection: Userapplication.where(user_id: current_login.id).includes(:applicationclient), label_method: :lista_appclient, input_html: { class: "form-control mb-2 mr-sm-2"} %>

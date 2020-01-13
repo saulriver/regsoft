@@ -7,6 +7,8 @@ class Incident < ApplicationRecord
 
    mount_uploader :picture, PictureUploader
   validates :description, :presence => true
+  validates :area, :presence => true
+  
   belongs_to :area
   belongs_to :userapplication
   belongs_to :user

@@ -31,8 +31,8 @@ class IncidentmanagementsController < ApplicationController
 
   # GET /incidentmanagements/1/edit
   def edit
-    @incidentmanagement = Incidentmanagement.find(params[:id])
-    @incidentmanagement.incident.picture
+     @incidentmanagement = Incidentmanagement.find(params[:id])
+     @incidentmanagement.incident.picture
   end
 
   # POST /incidentmanagements
@@ -41,7 +41,7 @@ class IncidentmanagementsController < ApplicationController
     @incidentmanagement = Incidentmanagement.new(incidentmanagement_params)
     respond_to do |format|
       if @incidentmanagement.save!
-        format.html { redirect_to @incidentmanagement, notice: 'Incidentmanagement was successfully created.' }
+        format.html { redirect_to @incidentmanagement, info: 'Incidentmanagement was successfully created.' }
         format.json { render :show, status: :created, location: @incidentmanagement }
       else
         format.html { render :new }
@@ -55,7 +55,7 @@ class IncidentmanagementsController < ApplicationController
   def update
     respond_to do |format|
       if @incidentmanagement.update(incidentmanagement_params)
-        format.html { redirect_to edit_incidentmanagement_path(@incidentmanagement), notice: 'Incidentmanagement was successfully updated.' }
+        format.html { redirect_to edit_incidentmanagement_path(), success: 'Incidentmanagement was successfully updated.' }
         format.json { render :show, status: :ok, location: @incidentmanagement }
       else
         format.html { render :edit }
@@ -69,7 +69,7 @@ class IncidentmanagementsController < ApplicationController
   def destroy
     @incidentmanagement.destroy
     respond_to do |format|
-      format.html { redirect_to incidentmanagements_url, notice: 'Incidentmanagement was successfully destroyed.' }
+      format.html { redirect_to incidentmanagements_url, danger: 'Incidentmanagement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

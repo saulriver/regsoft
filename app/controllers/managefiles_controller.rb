@@ -28,7 +28,7 @@ class ManagefilesController < ApplicationController
 
     respond_to do |format|
       if @managefile.save
-        format.html { redirect_to @managefile, notice: 'Managefile was successfully created.' }
+        format.html { redirect_to @managefile, info: 'Managefile was successfully created.' }
         format.json { render :show, status: :created, location: @managefile }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ManagefilesController < ApplicationController
   def update
     respond_to do |format|
       if @managefile.update(managefile_params)
-        format.html { redirect_to @managefile, notice: 'Managefile was successfully updated.' }
+        format.html { redirect_to @managefile, success: 'Managefile was successfully updated.' }
         format.json { render :show, status: :ok, location: @managefile }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ManagefilesController < ApplicationController
   def destroy
     @managefile.destroy
     respond_to do |format|
-      format.html { redirect_to managefiles_url, notice: 'Managefile was successfully destroyed.' }
+      format.html { redirect_to managefiles_url, danger: 'Managefile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -80,4 +80,4 @@ gem "font-awesome-rails"
 gem 'carrierwave', '~> 2.0', '>= 2.0.2'
 gem 'mini_magick'
 gem 'jquery-fileupload-rails', '~> 1.0'
-
+gem 'bootstrap'

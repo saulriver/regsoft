@@ -42,12 +42,12 @@ class IncidentsController < ApplicationController
     @user = User.joins(:userareas).where("userareas.area_id = #{@incident.area_id}").sample
     respond_to do |format|
       if @incident.save
-        @incidentmanagement = Incidentmanagement.create(user: @user, incident: @incident)
+          @incidentmanagement = Incidentmanagement.create(user: @user, incident: @incident)
         if @incidentmanagement.save
-          format.html { redirect_to new_incident_path(@incident), notice: 'Incident was successfully created.' }
+          format.html { redirect_to new_incident_path(@incident), info: 'Incident was successfully created.' }
           format.json { render :show, status: :created, location: @incident }
         else
-          format.html { render :new }
+          format.html { render :new, info: 'Incident was successfully updated.' }
           format.json { render json: @incident.errors, status: :unprocessable_entity }  
         end
       end
@@ -59,7 +59,7 @@ class IncidentsController < ApplicationController
   def update
     respond_to do |format|
       if @incident.update(incident_params)
-        format.html { render :edit, notice: 'Incident was successfully updated.' }
+        format.html { render :edit, info: 'Incident was successfully updated.' }
         format.json { render :edit, status: :ok, location: @incident }
       else
         format.html { render :edit }
@@ -73,7 +73,7 @@ class IncidentsController < ApplicationController
   def destroy
     @incident.destroy
     respond_to do |format|
-      format.html { redirect_to incidents_url, notice: 'Incident was successfully destroyed.' }
+      format.html { redirect_to incidents_url, danger: 'Incident was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -28,7 +28,7 @@ class ApplicationclientsController < ApplicationController
 
     respond_to do |format|
       if @applicationclient.save
-        format.html { redirect_to @applicationclient, notice: 'Applicationclient was successfully created.' }
+        format.html { redirect_to @applicationclient, info: 'Applicationclient was successfully created.' }
         format.json { render :show, status: :created, location: @applicationclient }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ApplicationclientsController < ApplicationController
   def update
     respond_to do |format|
       if @applicationclient.update(applicationclient_params).page(params[:page]).per(5)
-        format.html { redirect_to @applicationclient, notice: 'Applicationclient was successfully updated.' }
+        format.html { redirect_to @applicationclient, success: 'Applicationclient was successfully updated.' }
         format.json { render :show, status: :ok, location: @applicationclient }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ApplicationclientsController < ApplicationController
     @applicationclient = Applicationclient.find(params[:id])
     @applicationclient.destroy
     respond_to do |format|
-      format.html { redirect_to clients_path(:id), notice: 'Applicationclient was successfully destroyed.' }
+      format.html { redirect_to clients_path(:id), danger: 'Applicationclient was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

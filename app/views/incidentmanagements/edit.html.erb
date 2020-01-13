@@ -1,6 +1,6 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Gestionar Reporte</h1>
-<hr><%= notice%>
+<hr>
 
 <!--tabla principal-->
 <div class="row">
@@ -8,7 +8,14 @@
  <div class="footer text-left">
     <%= link_to 'Regresar', new_incidentmanagement_path, class: "btn btn-info" %>
   </div><br/>
-  
+
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
+
 <h5 class="text-left"><kbd>Incidencia reportada</kbd></h5>
 <div class="modal-content text-center">
 <div class="table-responsive">
@@ -73,7 +80,7 @@
 <!--tabla editar-->
 <div class="col-sm-5">
   <!-- The Modal -->
-    <div class="modal-dialog kbd1">
+    <div class="modal-dialog">
       <div class="modal-content">
  <!-- Modal Header -->
     <div class="modal-header">
@@ -87,9 +94,9 @@
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     
-    <form>
+    <form class="form-signin">
 
-    <figcaption class="figure-caption">
+   <figcaption class="figure-caption">
         <%= f.label :state %>
         <%= f.select :state,  options_for_select([['Cerrado', true], ['Abierto', false]]) %>
     </figcaption>

@@ -33,7 +33,7 @@ end
     @user.login = @login
     respond_to do |format|
       if @user.save && @login.save
-        format.html { redirect_to users_path(@user), notice: 'Usuario guardado correctamente.' }
+        format.html { redirect_to users_path(@user), info: 'Usuario guardado correctamente.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ end
   def update
     respond_to do |format|
       if @user.update(user_params) && @login.update(login_params)
-        format.html { redirect_to users_path(@user), notice: 'Usuario actualizado correctamente.' }
+        format.html { redirect_to users_path(@user), success: 'Usuario actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ end
     @user.destroy
     @login.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Usuario eliminado correctamente.' }
+      format.html { redirect_to users_url, danger: 'Usuario eliminado correctamente.' }
       format.json { head :no_content }
     end
   end
@@ -81,7 +81,7 @@ def user_client_create
 @clientuser = Userclient.new(userclient_params)
     if @clientuser.save
       @user = User.find(params[:id])
-      redirect_to user_client_index_path(@user.id)
+      redirect_to user_client_index_path(@user.id), info: 'Usuario cliente guardado correctamente.' 
      else
       render json: { error: @clientuser.errors.full_messages }, status: :bad_request
     end
@@ -92,7 +92,7 @@ end
     @userclient = Userclient.find(params[:userclient_id])
     if @userclient.destroy
       @user = User.find(params[:id])
-      redirect_to user_client_index_path(@user.id)
+      redirect_to user_client_index_path(@user.id), danger: 'Usuario cliente eliminado correctamente.' 
     end
 
   end
@@ -110,7 +110,7 @@ def user_area_create
   if @areauser.save
       @user = User.find(params[:id])
       @userareas = @user.userareas.page(params[:page]).per(5)
-      redirect_to user_area_index_path(@user.id), notice: 'Userarea was successfully created.'
+      redirect_to user_area_index_path(@user.id), info: 'Userarea was successfully created.'
   else
     render json: { error: @areauser.errors.full_messages }, status: :bad_request
   end
@@ -130,7 +130,7 @@ def user_application_create
 @applicationuser = Userapplication.new(userapplication_params)
   if @applicationuser.save
    @user = User.find(params[:id])
-    redirect_to user_application_index_path(@user.id)
+    redirect_to user_application_index_path(@user.id), info: 'Usuario aplicación guardado correctamente.' 
     else
     render json: { error: @applicationuser.errors.full_messages }, status: :bad_request
   end
@@ -141,7 +141,7 @@ def user_application_destroy
     if @userapplication.destroy
       @user = User.find(params[:id])
       respond_to do |format|#parametro para mostrar en pdf
-        format.html { render "users/index", notice: 'Userapplication not destroyed'}
+        format.html { render "users/index", danger: 'Userapplication was successfully destroyed'}
         format.json {}      
      end
     end
@@ -161,7 +161,7 @@ def application_operator_create
  @applicationoperator = Applicationoperator.new(applicationoperator_params)
   if @applicationoperator.save
      @user = User.find(params[:id])
-      redirect_to application_operator_index_path(@user.id)
+      redirect_to application_operator_index_path(@user.id), info: 'Aplicación operador guardado correctamente.' 
     else
       render json: { error: @applicationoperator.errors.full_messages }, status: :bad_request
   end
@@ -171,7 +171,7 @@ def application_operator_destroy
     @applicationoperator = Applicationoperator.find(params[:applicationoperator])
   if @applicationoperator.destroy
      @user = User.find(params[:id])
-      redirect_to application_operator_index_path(@user.id)
+      redirect_to application_operator_index_path(@user.id), danger: 'Aplicación operador eliminado correctamente.' 
   end
 end
   private

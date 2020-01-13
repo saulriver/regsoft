@@ -28,7 +28,7 @@ class ApplicationoperatorsController < ApplicationController
 
     respond_to do |format|
       if @applicationoperator.save
-        format.html { redirect_to @applicationoperator, notice: 'Creado con Exito.' }
+        format.html { redirect_to @applicationoperator, info: 'Creado con Exito.' }
         format.json { render :show, status: :created, location: @applicationoperator }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ApplicationoperatorsController < ApplicationController
   def update
     respond_to do |format|
       if @applicationoperator.update(applicationoperator_params)
-        format.html { redirect_to @applicationoperator, notice: 'Actualizado.' }
+        format.html { redirect_to @applicationoperator, success: 'Actualizado.' }
         format.json { render :show, status: :ok, location: @applicationoperator }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ApplicationoperatorsController < ApplicationController
   def destroy
     @applicationoperator.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Application Operator was successfully destroyed.' }
+      format.html { redirect_to users_url, danger: 'Application Operator was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

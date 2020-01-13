@@ -29,7 +29,7 @@ class UserapplicationsController < ApplicationController
 
     respond_to do |format|
       if @userapplication.save
-        format.html { redirect_to @userapplication, notice: 'Userapplication was successfully created.' }
+        format.html { redirect_to @userapplication, info: 'Userapplication was successfully created.' }
         format.json { render :show, status: :created, location: @userapplication }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class UserapplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @userapplication.update(userapplication_params)
-        format.html { redirect_to @userapplication, notice: 'Actualizada.' }
+        format.html { redirect_to @userapplication, success: 'Actualizada.' }
         format.json { render :show, status: :ok, location: @userapplication }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class UserapplicationsController < ApplicationController
     @userapplication = Userapplication.find(params[:id])
     @userapplication.destroy
     respond_to do |format|
-      format.html { redirect_to users_path(:id), notice: 'Userapplication was not successfully destroyed.'}
+      format.html { redirect_to users_path(:id), danger: 'Userapplication was not successfully destroyed.'}
       format.json { head :no_content }
     end
   end

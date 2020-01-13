@@ -28,7 +28,7 @@ class CriticalitiesController < ApplicationController
 
     respond_to do |format|
       if @criticality.save
-        format.html { redirect_to criticalities_path(@criticality), notice: 'Criticality was successfully created.' }
+        format.html { redirect_to criticalities_path(@criticality), info: 'Criticality was successfully created.' }
         format.json { render :show, status: :created, location: @criticality }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CriticalitiesController < ApplicationController
   def update
     respond_to do |format|
       if @criticality.update(criticality_params)
-        format.html { redirect_to criticalities_path(@criticality), notice: 'Criticality was successfully updated.' }
+        format.html { redirect_to criticalities_path(@criticality), success: 'Criticality was successfully updated.' }
         format.json { render :show, status: :ok, location: @criticality }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CriticalitiesController < ApplicationController
   def destroy
     @criticality.destroy
     respond_to do |format|
-      format.html { redirect_to criticalities_url, notice: 'Criticality was successfully destroyed.' }
+      format.html { redirect_to criticalities_url, danger: 'Criticality was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

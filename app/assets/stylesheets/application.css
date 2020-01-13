@@ -11210,7 +11210,7 @@ mark {
 
 .figure-caption {
     font-size: 95%;
-    color: #6c757d
+    color: #6c757d;
 }
 
 code {
@@ -11288,6 +11288,43 @@ pre code {
     .container {
         max-width: inherit;
         margin-top: 0%;
+    }
+}
+
+.cont {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width:576px) {
+    .cont {
+        max-width: inherit;
+    }
+}
+
+@media (min-width:768px) {
+    .cont {
+        max-width: inherit;
+    }
+}
+
+@media (min-width:992px) {
+    .cont {
+        max-width: inherit;
+    }
+}
+
+@media (min-width:1200px) {
+    .cont {
+        max-width: inherit;
+    }
+}
+
+@media (min-width:1366px) {
+    .cont {
+        max-width: inherit;
+        margin-top: -10%;
     }
 }
 
@@ -16134,7 +16171,7 @@ a.badge-dark:focus {
 .alert-danger {
     color: #721c24;
     background-color: #f8d7da;
-    border-color: #f5c6cb
+    border-color: #f5c6cb;
 }
 
 .alert-danger hr {
@@ -21329,7 +21366,7 @@ a.text-dark:hover {
 
 .imgcontainer {
     text-align: center;
-    margin: 7px;
+    margin-top: 46px;
 }
 
 img.avatar {
@@ -21386,7 +21423,6 @@ img.avatar {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 57%;
         margin-top: -11%;
     }
 }
@@ -21404,8 +21440,15 @@ img.avatar {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 59%;
-        margin-top: -11%;
+        position: absolute;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30%;
+        text-align: center;
+        border-radius: 20px;
+        z-index: auto;
+        margin-top: 25px;
     }
 }
 
@@ -21487,6 +21530,11 @@ img.avatar {
 
 @media (min-width:1366px) {
     .bg-text {
+         /* The image used */
+         background-image: url("/img/welcome.jpg");
+         /* Add the blur effect */
+         filter: blur(0px);
+         -webkit-filter: blur(0px);
         background-color: rgb(0, 0, 0);
         /* Fallback color */
         background-color: rgba(0, 0, 0, 0.4);
@@ -21578,7 +21626,7 @@ img.avatar {
 .bg-text-login {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.1);
     /* Black w/opacity/see-through */
     color: white;
     font-weight: bold;
@@ -21598,7 +21646,7 @@ img.avatar {
     .bg-text-login {
         background-color: rgb(0, 0, 0);
         /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.1);
         /* Black w/opacity/see-through */
         color: white;
         font-weight: bold;
@@ -21607,7 +21655,7 @@ img.avatar {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 80%;
+        width: 40%;
         text-align: center;
         z-index: auto;
         border-radius: 20px;
@@ -21618,7 +21666,7 @@ img.avatar {
     .bg-text-login {
         background-color: rgb(0, 0, 0);
         /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.1);
         /* Black w/opacity/see-through */
         color: white;
         font-weight: bold;
@@ -21627,7 +21675,7 @@ img.avatar {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 80%;
+        width: 40%;
         text-align: center;
         z-index: auto;
         border-radius: 20px;
@@ -21638,19 +21686,20 @@ img.avatar {
     .bg-text-login {
         background-color: rgb(0, 0, 0);
         /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.1);
         /* Black w/opacity/see-through */
         color: white;
         font-weight: bold;
         border: 0px solid #f1f1f1;
         position: absolute;
-        top: 50%;
+        top: 42%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 30%;
         text-align: center;
         border-radius: 20px;
         z-index: auto;
+        margin-top: 25px;
     }
 }
 
@@ -21658,16 +21707,15 @@ img.avatar {
     .bg-text-login {
         background-color: rgb(0, 0, 0);
         /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.1);
         /* Black w/opacity/see-through */
         color: white;
         font-weight: bold;
-        border: 3px solid #f1f1f1;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 80%;
+        width: 20%;
         text-align: center;
         z-index: auto;
         border-radius: 20px;
@@ -21676,7 +21724,7 @@ img.avatar {
 
 .bg-image-login {
     /* The image used */
-    background-image: url("/img/welcome.jpg");
+    background-image: url("/img/welcome1.jpeg");
     /* Add the blur effect */
     filter: blur(8px);
     -webkit-filter: blur(8px);
@@ -21692,7 +21740,7 @@ img.avatar {
 @media (min-width:360px) {
     .bg-image-login {
         /* The image used */
-        background-image: url("/img/welcome.jpg");
+        background-image: url("/img/welcome1.jpg");
         /* Add the blur effect */
         filter: blur(8px);
         -webkit-filter: blur(8px);
@@ -21710,7 +21758,7 @@ img.avatar {
 @media (min-width:1280px) {
     .bg-image-login {
         /* The image used */
-        background-image: url("/img/welcome.jpg");
+        background-image: url("/img/welcome1.jpg");
         /* Add the blur effect */
         filter: blur(8px);
         -webkit-filter: blur(8px);
@@ -21728,7 +21776,7 @@ img.avatar {
 @media (min-width:1366px) {
     .bg-image-login {
         /* The image used */
-        background-image: url("/img/welcome.jpg");
+        background-image: url("/img/welcome1.jpg");
         /* Add the blur effect */
         filter: blur(8px);
         -webkit-filter: blur(8px);
@@ -21738,15 +21786,15 @@ img.avatar {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 60%;
-        margin-top: -13%;
+        margin-top: auto;
+
     }
 }
 
 @media (min-width:1920px) {
     .bg-image-login {
         /* The image used */
-        background-image: url("/img/welcome.jpg");
+        background-image: url("/img/welcome1.jpg");
         /* Add the blur effect */
         filter: blur(8px);
         -webkit-filter: blur(8px);

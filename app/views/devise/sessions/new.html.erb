@@ -30,29 +30,23 @@
   </figcaption>
 
 <figcaption class="figure-caption">
-  <label class="form-group">
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </label>
  </figcaption>
 
 <figcaption class="figure-caption">
-    <label class="form-group">
 					<label for="language">Idioma</label>
 					<select id="lang" name="lang" class="form-control">
 						<option></option>
 						<option value="en" selected="">English</option>
 						<option value="es">Spanish</option>
 					</select>
-		</label>
 </figcaption>
 
-<label class="form-group col-md-6">
+
   <%= f.submit "Iniciar Sesión", class:'btn btn-info btn-md' %>
-</label>
-<br/><br/>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name) %><br />
+  <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name), style:"color: white;" %><br />
 <% end %>
 
 </form>
