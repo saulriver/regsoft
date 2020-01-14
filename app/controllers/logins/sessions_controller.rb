@@ -28,5 +28,5 @@ class Logins::SessionsController < Devise::SessionsController
   #  
    devise_parameter_sanitizer.permit(:sign_in, keys: [:username, :password])
   # 
-  end
+end
 end
