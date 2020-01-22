@@ -39,16 +39,16 @@
     <div class="row">
       <tr class="text-center">
         <td colspan="2">
-        <% if DateTime.now < @incidentmanagement.Overtime%>
+          <% if DateTime.now < @incidentmanagement.Overtime%>
             <kbd class="btn-group btn btn-success btn-sm"><%= @incidentmanagement.incident.id %></kbd>
-          <%end%>
-          <% if DateTime.now > @incidentmanagement.Overtime && DateTime.now < @incidentmanagement.Littletime %>
-          <kbd class="btn-group btn btn-warning btn-sm"><%= @incidentmanagement.incident.id %></kbd>
              <%end%>
-             <% if DateTime.now > @incidentmanagement.Littletime %>
-          <kbd class="btn-group btn btn-danger btn-sm"><%= @incidentmanagement.incident.id %></kbd>
-             <%end%>
-        </td>
+           <% if DateTime.now > @incidentmanagement.Overtime && DateTime.now < @incidentmanagement.Littletime %>
+             <kbd class="btn-group btn btn-warning btn-sm"><%= @incidentmanagement.incident.id %></kbd>
+              <%end%>
+            <% if DateTime.now > @incidentmanagement.Littletime %>
+              <kbd class="btn-group btn btn-danger btn-sm"><%= @incidentmanagement.incident.id %></kbd>
+               <%end%>
+         </td>
         <td><%= @incidentmanagement.incident.criticality.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.application.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.client.name %></td>
