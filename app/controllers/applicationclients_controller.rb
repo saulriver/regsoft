@@ -41,7 +41,7 @@ class ApplicationclientsController < ApplicationController
   # PATCH/PUT /applicationclients/1.json
   def update
     respond_to do |format|
-      if @applicationclient.update(applicationclient_params).page(params[:page]).per(5)
+      if @applicationclient.update(applicationclient_params)
         format.html { redirect_to @applicationclient, success: 'Applicationclient was successfully updated.' }
         format.json { render :show, status: :ok, location: @applicationclient }
       else

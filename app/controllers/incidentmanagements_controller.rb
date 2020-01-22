@@ -9,7 +9,7 @@ class IncidentmanagementsController < ApplicationController
     if params[:search].present?
       @incidentmanagements = Incidentmanagement.where("incident_id LIKE ?", "%#{params[:search]}%").page params[:page]
     else
-      @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.id DESC").page(params[:page]).per(5)
+      @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.user_id DESC").page(params[:page]).per(5)
       @incidentmanagements = Incidentmanagement.order("incidentmanagements.id DESC").page(params[:page]).per(5)
       respond_to do |format|
       format.html{}
@@ -26,7 +26,8 @@ class IncidentmanagementsController < ApplicationController
 
   # GET /incidentmanagements/new
   def new
-    @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.id DESC").page(params[:page]).per(5)
+    @incidentmanagements = Incidentmanagement.where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.user_id DESC").page(params[:page]).per(5)
+
   end
 
   # GET /incidentmanagements/1/edit
