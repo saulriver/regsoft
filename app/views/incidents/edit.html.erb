@@ -1,6 +1,13 @@
 <br/><br/>
-  <h1 style="color: #6c757d;">Ver incidencia</h1>
+  <h1 style="color: #6c757d;">Editar incidencia</h1>
    <hr>
+
+ <% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
 
 <!--tabla principal-->
 <div class="row">
@@ -23,7 +30,7 @@
   <table class="table">
     <thead>
         <tr class="success btn-info active justify-content-center">
-          <th colspan="2"><h5><b style="color: orange">Ticket</b></h5></th>
+          <th colspan="2"><h5><b style="color: orange">N° Incidencia</b></h5></th>
           <th><h6>Criticidad</h6></th>
           <th><h6>Aplicación</h6></th>
           <th><h6>Reporta</h6></th>
@@ -55,39 +62,22 @@
 </div>
 <!--tabla principal-->
 <br/>
-
 <!--tabla imagen reporte-->
 <div class="row">
-<div class="col-sm-7">
-<h5 class="text-left"><kbd>Archivos reporte incidencia</kbd></h5>
+<div class="col-md-7">
+<h5 class="text-left"><kbd>Imagén reporte incidencia</kbd></h5>
 <div class="modal-content text-center">
 <label class="form-group">
   <tbody>
      <br/>
        <figure class="figure">
-         <%= image_tag(@incident.picture_url.to_s, class: 'figure-img img-fluid rounded') if @incident.picture? %>
+         <%= image_tag(@incident.picture_url, class: 'figure-img img-fluid rounded', alt: 'Image') if @incident.picture? %>
        </figure>
-       <br/>
   </tbody>
 </label>
 </div>
 </div>
 <!--tabla imagen-->
-
-<!--tabla imagen-->
-<div class="col-sm-7">
-<h5 class="text-left"><kbd>Archivos gestión incidencia</kbd></h5>
-<div class="modal-content text-center">
-<label class="form-group">
-  <tbody>
-     <br/>
-      
-  </tbody>
-</label>
-</div>
-</div>
-<!--tabla imagen-->
-
 <div class="col-md-5">
   <!-- The Modal -->
     <div class="modal-dialog">
@@ -100,15 +90,13 @@
   <div class="modal-body">
     <div class="modal-content tabcontent">
        <div class="dialog kbd1">
-        <%= simple_form_for(@incident, html: { multipart: true }) do |f| %>
+        <%= simple_form_for(@incident) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-        <%= f.hidden_field :incident_id, :value => @incident.id%>
-        <%= f.hidden_field :state, :value => true%>
 
  <form>
     <figcaption class="figure-caption">
-      <%= f.association :userapplication, collection: Userapplication.where(user_id: current_login.id).includes(:applicationclient), label_method: :lista_appclient %>
+      <%= f.association :userapplication, label_method: :lista_appclient %>
     </figcaption>
 
     <figcaption class="figure-caption">
@@ -146,10 +134,10 @@
  
  </form>
  <% end %>
-     </div>
-   </div>
+</div>
+ </div>
   </div>
-</div>
-</div>
-</div>
-</div>
+   </div>
+    </div>
+     </div>
+      </div>

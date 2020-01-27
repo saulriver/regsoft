@@ -5,6 +5,7 @@
 //= require turbolinks
 //= require_tree .
 
+
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
@@ -35,4 +36,3 @@ function myFunction() {
     var element = document.div;
     element.classList.toggle("dark-mode");
 }
-

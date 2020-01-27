@@ -66,7 +66,7 @@ class ClientsController < ApplicationController
   end
 
   def client_application_client_index    
-    @client = Client.find(params[:id])
+    @client = Client.find(params[:id]) 
     @clientapplicationclients = @client.applicationclients.page(params[:page]).per(5)
     @applications = Application.all
     @applicationclient = Applicationclient.new

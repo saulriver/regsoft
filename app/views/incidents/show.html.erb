@@ -1,6 +1,12 @@
   <br/><br/>
   <h1 style="color: #6c757d;">Archivos</h1>
 <hr>
+<% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
 
 <!--tabla principal-->
 <div class="row">
@@ -8,13 +14,6 @@
  <div class="footer text-left">
     <%= link_to 'Regresar', edit_incident_path(@incident), class: "btn btn-info" %>
   </div><br/>
-  
-<% flash.each do |name, msg| %>
-      <div class="alert alert-info alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <%= msg%>
-      </div>
-    <% end %>
 
 <!--tabla imagen gestion-->
 <h5 class="text-left"><kbd>Imagén reporte incidencia</kbd></h5>

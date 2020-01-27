@@ -73,14 +73,14 @@ es:
          description: "Descripción"
          datereport: "Fecha/Hora"
          state: "Estado"
-         picture: "Subir archivo"
+         picture: "Subir imagén"
        incidentmanagement: 
           user: "Gestiona"
           incident: "N° incidencia"
           datereport: "Fecha/Hora"
           description: "Descripción"
           state: "Estado"
-          picture: "Subir archivo"
+          picture: "Subir imagén"
        managefile: 
           incidentmanagement_id: "N° gestión incidencia"
           filetype: "Tipo archivo"

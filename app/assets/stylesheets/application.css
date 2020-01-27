@@ -1,4 +1,3 @@
-
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -11846,7 +11845,7 @@ pre code {
     .col-md-5 {
         -ms-flex: 0 0 41.666667%;
         flex: 0 0 41.666667%;
-        max-width: 41.666667%;
+        max-width: 41.666667%
     }
     .col-md-6 {
         -ms-flex: 0 0 50%;
@@ -11978,49 +11977,6 @@ pre code {
     }
     .offset-md-11 {
         margin-left: 91.666667%
-    }
-}
-@media (min-width:768px) {
-    .col-md-5 {
-        -ms-flex: 0 0 41.666667%;
-        flex: 0 0 41.666667%;
-        max-width: 41.666667%;
-        margin-top: -34%;
-    }
-}
-@media (max-width:1280px) {
-    .col-md-5 {
-        -ms-flex: 0 0 41.666667%;
-        flex: 0 0 41.666667%;
-        max-width: 41.666667%;
-        margin-top: -27%;
-    }
-}
-@media (max-width:1366px) {
-    .col-md-5 {
-        -ms-flex: 0 0 41.666667%;
-        flex: 0 0 41.666667%;
-        max-width: 41.666667%;
-        margin-top: -22%;
-        position: relative;
-        padding-top: 14%;
-    }
-}
-
-@media (min-width:1920px) {
-    .col-md-5 {
-        -ms-flex: 0 0 41.666667%;
-        flex: 0 0 41.666667%;
-        max-width: 41.666667%;
-        margin-top: -18%;
-    }
-}
-@media (min-width:2560px) {
-    .col-md-5 {
-        -ms-flex: 0 0 41.666667%;
-        flex: 0 0 41.666667%;
-        max-width: 41.666667%;
-        margin-top: -13%;
     }
 }
 
@@ -12233,7 +12189,7 @@ pre code {
     .col-xl-5 {
         -ms-flex: 0 0 41.666667%;
         flex: 0 0 41.666667%;
-        max-width: 41.666667%;
+        max-width: 41.666667%
     }
     .col-xl-6 {
         -ms-flex: 0 0 50%;
@@ -12376,7 +12332,7 @@ pre code {
 
 .table td,
 .table th {
-    padding: .5rem;
+    padding: .7rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6
 }
@@ -21176,7 +21132,7 @@ a.text-dark:hover {
 /* Remove extra left and right margins, due to padding */
 
 .row {
-    margin: 0 -14px;
+    margin: 0 -5px;
 }
 
 
@@ -21736,7 +21692,7 @@ img.avatar {
         font-weight: bold;
         border: 0px solid #f1f1f1;
         position: absolute;
-        top: 43%;
+        top: 42%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 30%;
@@ -21938,8 +21894,8 @@ img.avatar {
 }
 
 .p1{
-    margin-top: -5px;
-    margin-left: -5px;
+    margin-top: -35px;
+    margin-left: 240px;
     color: #6c757d;
     opacity: 0.7;
 }

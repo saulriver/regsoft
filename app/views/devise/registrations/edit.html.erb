@@ -1,27 +1,13 @@
-
-<!--<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
-
-
-<div class="bg-image-login"></div>
-<div class="bg-text-login">
-<div>
-
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<br/><br/><br/>
+<div class="container">
+<div class="card2 card-container2">
+<h4>Regedin Software</h4>
+<h2>Cambiar Contraseña <%= resource_name.to_s.humanize %></h2>
+<br/>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
  <form class="form-signin2">
-
-  <% flash.each do |key, value| %>
-    <a>
-      <% if key == "alert"%>
-      <div class="alert alert-danger alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong> <%= value %></strong>
-      </div>
-      <% end %>
-    </a>
-<% end %>
-
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -46,6 +32,72 @@
     
     <%= link_to "Regresar", :back, class:"btn btn-info"%>
   </div>
+
+</form>
+</div><!--div card card container-->
+<% end %>
+</div><!--div container-->
+<!--<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
+
+
+<div class="bg-image-login"></div>
+<div class="bg-text-login">
+<div>
+<div class="imgcontainer">
+     <%= image_tag "/img/usuario_128.png", :alt=>"Avatar" %>
+  </div><br/>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
+<form class="form-signin">
+
+ <% flash.each do |key, value| %>
+    <a>
+      <% if key == "alert"%>
+      <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong> <%= value %></strong>
+      </div>
+      <% end %>
+    </a>
+<% end %>
+
+<figcaption class="figure-caption">
+    <%= f.label "Usuario", :id=>"text-label" %>
+    <%= f.text_field :username,  class:"form-control", required: false, autofocus: true, input_html: { autocomplete: "username" }, :placeholder=> "nombre.apellido" %>
+  </figcaption>
+
+  <figcaption class="figure-caption">
+    <%= f.label :password, :id=>"text-label" %><br />
+    <%= f.password_field :password, class:"form-control", required: false, input_html: { autocomplete: "off" }, :placeholder=> "Contraseña", :required=> :true  %>
+  </figcaption>
+
+<figcaption class="figure-caption">
+  <label class="form-group">
+    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  </label>
+ </figcaption>
+
+<figcaption class="figure-caption">
+    <label class="form-group">
+					<label for="language">Idioma</label>
+					<select id="lang" name="lang" class="form-control">
+						<option></option>
+						<option value="en" selected="">English</option>
+						<option value="es">Spanish</option>
+					</select>
+		</label>
+</figcaption>
+
+<label class="form-group col-md-6">
+  <%= f.submit "Iniciar Sesión", class:'btn btn-info btn-md' %>
+</label>
+<br/><br/>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name) %><br />
+<% end %>
 
 </form>
 </div><!--div card card container-->

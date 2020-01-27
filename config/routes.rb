@@ -20,10 +20,7 @@ Rails.application.routes.draw do
   resources :vistaroles
   resources :vistaclientes
   resources :vistareportes
-  resources :vistagestions  
-  resources :statisticreports
-  resources :statisticmanages
-  resources :welcomes
+  resources :vistagestions
   get '/user/client/:id', to: 'users#user_client_index', as: "user_client_index"
   post '/user/client/:id', to: 'users#user_client_create', as: "user_client_create"
   get '/user/client/delete/:id', to: 'users#user_client_destroy', as: "user_client_destroy"

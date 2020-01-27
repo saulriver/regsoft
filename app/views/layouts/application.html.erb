@@ -13,7 +13,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(23, 162, 184);">
-<a class="navbar-brand" href='/welcome/index'>REGEDIN SOFTWARE</a>
+<a class="navbar-brand" href="#">REGEDIN SOFTWARE</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -49,8 +49,14 @@
   </nav>
 
     <div class="container">
-    <%= yield %>
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+     <% end %>
+        <%= yield %>
      </div>
       
-   </body>
+    <body>
 </html>

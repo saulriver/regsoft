@@ -1,18 +1,11 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Consulta gestión</h1>
-  <hr>
+  <hr><%= notice%>
 
 <div class="footer text-left">
     <%= link_to 'Menú', vistagestions_path, class: "btn btn-info" %>
   </div><br/>
 
-<% flash.each do |name, msg| %>
-      <div class="alert alert-info alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <%= msg%>
-      </div>
-    <% end %>
-    
  <div class="custom-search-form">
   <%= form_tag(incidentmanagements_path, method: :get) do %>
   <%= text_field_tag(:search, params[:search], placeholder: "Buscar por N° incidencia")%>
@@ -21,15 +14,6 @@
 
 <h5 class="text-left"><kbd>Listado gestiones</kbd></h5>
 
-<!--botones de explicacion-->   
-        <div class="text-left">
-          <kbd class="btn-group btn btn-danger btn-sm", title="Poco tiempo a una hora de acabarse el tiempo" >P</kbd>
-          <kbd class="btn-group btn btn-warning btn-sm", title="Sobre el tiempo a mitad de la hora de llegada" >S</kbd>
-          <kbd class="btn-group btn btn-success btn-sm", title="Bien de tiempo al momento en que llega la incidencia" >B</kbd>
-        <a style="color: #6c757d;">|Estados de tiempos|</a>   
-        </div>
-<!--botones de explicacion-->
-    
 <div class="modal-content text-center">
 <div class="table-responsive">
 <table class="table">
@@ -43,16 +27,11 @@
       <th><h6>Gestiona</h6></th>
       <th><h6>Aplicación</h6></th>
       <th><h6>Hrs/ANS</h6></th>
-      <th><h6>Reporte</h6></th>
-      <th><h6><kbd class="btn-group btn btn-danger btn-sm">P</kbd></h6></th>
-      <th><h6><kbd class="btn-group btn btn-warning btn-sm">S</kbd></h6></th>
-      <th><h6><kbd class="btn-group btn btn-success btn-sm">B</kbd></h6></th>
-      <th><h6>Gestión</h6></th>
+      <th><h6>Hrs/Reporte</h6></th>
+      <th><h6>Hrs/Gestión</h6></th>
       <th><h6>Descripción</h6></th>
-      <th><h6>Archivos</h6></th>
-      <th><h6>Aprobado</h6></th>
-      <th><h6>Rechazado</h6></th>
-      <th><h6>Estado</h6></th>
+      <th><h6>Ver archivos</h6></th>
+      <th><h6>Gestión</h6></th>
     </tr>
   </div>
 </thead>
@@ -63,27 +42,15 @@
     <div class="row">
       <tr class="text-center">
         <td colspan="3">
-          <% if DateTime.now < incidentmanagement.Overtime%>
-            <kbd class="btn-group btn btn-success btn-sm"><%= incidentmanagement.incident.id %></kbd>
-          <%end%>
-          <% if DateTime.now > incidentmanagement.Overtime && DateTime.now < incidentmanagement.Littletime %>
-          <kbd class="btn-group btn btn-warning btn-sm"><%= incidentmanagement.incident.id %></kbd>
-             <%end%>
-             <% if DateTime.now > incidentmanagement.Littletime %>
-          <kbd class="btn-group btn btn-danger btn-sm"><%= incidentmanagement.incident.id %></kbd>
-             <%end%>
-        </td>
+        <kbd><%= incidentmanagement.incident.id %></kbd></td>
         <td><%= incidentmanagement.incident.criticality.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.client.name %></td>
         <td><%= incidentmanagement.incident.user.name %></td>
         <td><%= incidentmanagement.user.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.application.name %></td>
         <td><%= incidentmanagement.incident.userapplication.applicationclient.servicelevel %>hrs</td>
-        <td><b><%= incidentmanagement.incident.created_at.in_time_zone %></b></td>
-        <td><%= incidentmanagement.Littletime.in_time_zone %></td>
-        <td><%= incidentmanagement.Overtime.in_time_zone %></td>
-        <td><%= incidentmanagement.Tlevel.in_time_zone %></td>
-        <td><b><%= incidentmanagement.updated_at.in_time_zone %></b></td>
+        <td><b style="color:#c82333;"><%= incidentmanagement.incident.created_at.in_time_zone %></b></td>
+        <td><b style="color:#218838;"><%= incidentmanagement.updated_at.in_time_zone %></b></td>
         <td><%= incidentmanagement.description %></td>
         <td><%= link_to incidentmanagement_path(incidentmanagement.id) do %>
             <%= image_tag "/img/gallery_24.png", :title=>"Archivos" %>

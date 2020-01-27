@@ -8,8 +8,6 @@ def index
     @users = User.where("name LIKE ?", "%#{params[:search]}%").page params[:page]
   else
     @users = User.page(params[:page]).per(5)
-    @incidents_count = Incident.group(:user_id).count
-      @incidents_date = Incident.group(:created_at).count
     end
 end
   # GET /users/1
@@ -70,11 +68,13 @@ end
   end
 
   def user_client_index
+
     @user = User.find(params[:id])
     @userclients = Userclient.where("user_id = ?", @user.id)
     @clients = Client.all
     @userclient = Userclient.new
     render "userclients/index"
+
   end
 
 def user_client_create
@@ -148,11 +148,13 @@ def user_application_destroy
 end
 
   def application_operator_index
+
     @user = User.find(params[:id])
     @applicationoperators = @user.applicationoperators.page(params[:page]).per(5)
     @applications = Applicationclient.all
     @applicationoperator = Applicationoperator.new
     render "applicationoperators/index"
+
   end
 
 def application_operator_create
@@ -172,7 +174,6 @@ def application_operator_destroy
       redirect_to application_operator_index_path(@user.id), danger: 'Aplicación operador eliminado correctamente.' 
   end
 end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

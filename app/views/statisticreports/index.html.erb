@@ -1,9 +1,0 @@
-<br/><br/>
-<h1 style="color: #6c757d;">Estadistica</h1>
-<hr>
-<br/>
-<h3 style="color: #6c757d;">Incidencias reportadas por <% if login_signed_in? %>
-                <strong><%= current_login.username %></strong>
-            <%end%></h3>
-
-<%= column_chart @incidents_count %>
