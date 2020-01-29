@@ -29,7 +29,6 @@
     <th><h6>Visualizar</h6></th>
     <th><h6>Aplicación</h6></th>
     <th><h6>Area</h6></th>
-    <th><h6>Gestor</h6></th>
     <th><h6>Nivel criticidad</h6></th>
     <th><h6>ANS</h6></th>
     <th><h6>Enviada</h6></th>
@@ -51,7 +50,6 @@
           </td>
         <td><%= incident.userapplication.applicationclient.application.name %></td>
         <td><%= incident.area.name %></td>
-        <td><%= incident.user.name %></td>
         <td><%= incident.criticality.name %></td>
         <td><%= incident.userapplication.applicationclient.servicelevel %>hrs</td>
         <td><%= incident.created_at.in_time_zone %></td>
