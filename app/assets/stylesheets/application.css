@@ -737,7 +737,7 @@ kbd {
     padding: 0.2rem 0.4rem;
     font-size: 87.5%;
     color: #fff;
-    background-color: #3e3e3f;
+    background-color: #4c4c4e;
     border-radius: 0.2rem;
 }
 
@@ -11228,7 +11228,7 @@ kbd {
     padding: .2rem .4rem;
     font-size: 87.5%;
     color: #fff;
-    background-color: #212529;
+    background-color: #74787a;
     border-radius: .2rem
 }
 
@@ -16951,7 +16951,29 @@ a.close.disabled {
         max-width: 300px
     }
 }
-
+@media (min-width: 1920px) {
+    .modal-dialog {
+        max-width: 664px;
+        /*margin: -1.25rem auto;*/
+        margin: 3.25rem auto;
+        margin-left: 13%;
+    }
+    .modal-dialog-scrollable {
+        max-height: calc(100% - 3.5rem)
+    }
+    .modal-dialog-scrollable .modal-content {
+        max-height: calc(100vh - 3.5rem)
+    }
+    .modal-dialog-centered {
+        min-height: calc(100% - 3.5rem)
+    }
+    .modal-dialog-centered::before {
+        height: calc(100vh - 3.5rem)
+    }
+    .modal-sm {
+        max-width: 300px
+    }
+}
 @media (min-width:992px) {
     .modal-lg,
     .modal-xl {
