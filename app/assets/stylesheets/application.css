@@ -21857,7 +21857,7 @@ img.avatar {
     }
 }
 
-@media (min-width:1920px) {
+@media (min-width: 1920px) {
     .bg-image-login {
         /* The image used */
         background-image: url("/img/welcome1.jpg");
@@ -21870,7 +21870,7 @@ img.avatar {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 57%;
+        padding-top: 60%;
     }
 }
 
