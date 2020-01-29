@@ -21,6 +21,7 @@
 <div class="table-responsive">
   <table class="table">
     <thead>
+    <div class="row">
         <tr class="success btn-info active justify-content-center">
           <th colspan="2"><h5><b style="color: orange">Ticket</b></h5></th>
           <th><h6>Criticidad</h6></th>
@@ -31,12 +32,13 @@
           <th><h6>Descripción</h6></th>
           <th><h6>Estado</h6></th>
         </tr>
+        </div>
     </thead>
 
     <tbody>
+    <div class="row">
       <tr class="text-center">
         <td colspan="2">
-<<<<<<< HEAD
           <% if DateTime.now < @incidentmanagement.Overtime%>
             <kbd class="btn-group btn btn-success btn-sm"><%= @incidentmanagement.incident.id %></kbd>
              <%end%>
@@ -47,9 +49,6 @@
               <kbd class="btn-group btn btn-danger btn-sm"><%= @incidentmanagement.incident.id %></kbd>
                <%end%>
          </td>
-=======
-        <kbd><%= @incidentmanagement.incident.id %></kbd></td>
->>>>>>> parent of 73a017e... 7
         <td><%= @incidentmanagement.incident.criticality.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.application.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.client.name %></td>
@@ -64,6 +63,7 @@
           <% end %>
         </td>
        </tr>
+       </div>
     </tbody>
   </table>
 </div>
@@ -82,7 +82,11 @@
   <tbody>
      <br/>
        <figure class="figure">
-         <%= image_tag(@incidentmanagement.incident.picture_url, class: 'figure-img img-fluid rounded', alt: 'Image') if @incidentmanagement.incident.picture? %>
+         <%= image_tag(@incidentmanagement.incident.picture_url.to_s, class: 'figure-img img-fluid rounded', alt: 'Archivo') if @incidentmanagement.incident.picture? %>
+       </figure>
+        <br/>
+       <figure class="figure">
+         <%= link_to "Descargar archivo", @incidentmanagement.incident.picture_url.to_s, :target => '_blank', alt: 'Archivo' %>
        </figure>
   </tbody>
 </label>
@@ -103,7 +107,7 @@
   <div class="modal-body">
     <div class="modal-content tabcontent">
         <div class="dialog">
-        <%= simple_form_for(@incidentmanagement) do |f| %>
+        <%= simple_form_for(@incidentmanagement, html: { multipart: true }) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     
@@ -124,7 +128,6 @@
 
      <figcaption class="figure-caption">
        <%= f.file_field :picture %>
-       <%= f.hidden_field :picture_cache %>
      </figcaption>
      
      <label></label>
@@ -133,7 +136,7 @@
       </figcaption>
 
      <figure class="figure">
-      <%comment= image_tag(@incidentmanagement.picture_url, class: 'figures-imgindex img-fluid rounded', alt: 'Image') if @incidentmanagement.picture? %>
+      <%= image_tag(@incidentmanagement.picture_url, class: 'figures-img index img-fluid rounded' ) if @incidentmanagement.picture? %>
      </figure>
 
       <%= f.submit "Gestionar", method: :edit %>

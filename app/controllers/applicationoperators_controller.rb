@@ -69,6 +69,6 @@ class ApplicationoperatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def applicationoperator_params
-      params.require(:applicationoperator).permit(:user_id, :application_id, :state)
+      params.require(:applicationoperator).permit(:user_id, :application_id, :state, :page)
     end
 end

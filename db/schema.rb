@@ -104,9 +104,6 @@ ActiveRecord::Schema.define(version: 2020_01_20_185702) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
-    t.datetime "Tlevel"
-    t.datetime "Littletime"
-    t.datetime "Overtime"
     t.index ["area_id"], name: "index_incidents_on_area_id"
     t.index ["criticality_id"], name: "index_incidents_on_criticality_id"
     t.index ["user_id"], name: "index_incidents_on_user_id"

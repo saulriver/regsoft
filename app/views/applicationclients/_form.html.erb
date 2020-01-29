@@ -31,8 +31,9 @@
        
     <div class="left">
       <figcaption class="figure-caption">
-          <%= f.input :servicelevel %>
-        </figcaption>
+        <%= f.label :servicelevel %>
+        <%= f.number_field :servicelevel, :value => 5, min: 5, max: 80, step: 1 %>
+      </figcaption>
         </div>
 
     <div class="right">

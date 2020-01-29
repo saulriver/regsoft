@@ -7,7 +7,9 @@
 <div class="footer text-left">
  <%= link_to 'Regresar', clients_path, class: "btn btn-info" %>
 </div><br/>
-     <h5 class="text-left"><kbd>Cliente</kbd></h5>
+
+    
+<h5 class="text-left"><kbd>Cliente</kbd></h5>
   <div id="Nservicios" class="modal-content text-center tabcontent">
     <div class="table-responsive">
      <table class="table">
@@ -140,7 +142,7 @@
 
       <figcaption class="figure-caption">
         <%= f.label :servicelevel %>
-        <%= f.number_field :servicelevel, :value => 1, min: 1, max: 80, step: 1 %>
+        <%= f.number_field :servicelevel, :value => 5, min: 5, max: 80, step: 1 %>
       </figcaption>
        <label></label>
 

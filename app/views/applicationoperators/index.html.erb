@@ -6,7 +6,15 @@
 <div class="col-sm-12"><div class="footer text-left">
  <%= link_to 'Regresar', users_path, class: "btn btn-info" %>
 </div><br/>
-     <h5 class="text-left"><kbd>Usuario</kbd></h5>
+
+<% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
+
+<h5 class="text-left"><kbd>Usuario</kbd></h5>
   <div id="Nservicios" class="modal-content text-center tabcontent">
     <div class="table-responsive">
      <table class="table">

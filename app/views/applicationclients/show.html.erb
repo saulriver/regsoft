@@ -1,5 +1,11 @@
 <br/><br/><br/>
-<%= notice %>
+<% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
+
 <div class="modal-content text-center tabcontent">
 <div class="table-responsive">
   <table class="table">
@@ -41,4 +47,5 @@
 <br/>
 <% comment= link_to 'Editar', edit_applicationclient_path(@applicationclient) %>
 <%= link_to 'Regresar', edit_applicationclient_path, class: "btn btn-info" %>
+<%= link_to 'Regresar', client_application_client_index_path(client.id) do %>
 </div>

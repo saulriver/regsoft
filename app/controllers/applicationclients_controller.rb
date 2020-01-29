@@ -14,7 +14,7 @@ class ApplicationclientsController < ApplicationController
 
   # GET /applicationclients/new
   def new
-    @applicationclient = Applicationclient.new
+    @applicationclient = Applicationclient.new.page(params[:page]).per(5)
   end
 
   # GET /applicationclients/1/edit
@@ -24,7 +24,7 @@ class ApplicationclientsController < ApplicationController
   # POST /applicationclients
   # POST /applicationclients.json
   def create
-    @applicationclient = Applicationclient.new(applicationclient_params)
+    @applicationclient = Applicationclient.new(applicationclient_params).page(params[:page]).per(5)
 
     respond_to do |format|
       if @applicationclient.save
@@ -41,7 +41,7 @@ class ApplicationclientsController < ApplicationController
   # PATCH/PUT /applicationclients/1.json
   def update
     respond_to do |format|
-      if @applicationclient.update(applicationclient_params).page(params[:page]).per(5)
+      if @applicationclient.update(applicationclient_params)
         format.html { redirect_to @applicationclient, success: 'Applicationclient was successfully updated.' }
         format.json { render :show, status: :ok, location: @applicationclient }
       else

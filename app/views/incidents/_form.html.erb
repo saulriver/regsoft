@@ -2,11 +2,10 @@
   <h1 style="color: #6c757d;">Nueva incidencia</h1>
 <hr>
    
-<div class="row">
-  <div class="boton1">
+
+  <div class="footer text-left">
     <%= link_to 'Menú', vistareportes_path, class: "btn btn-info" %>
-    </div>
-</div><br/>
+    </div><br/>
 
 <% flash.each do |name, msg| %>
       <div class="alert alert-info alert-dismissible">
@@ -25,25 +24,25 @@
 
 <form>
 
-  <div class="left">
+  <div class="left" id="userapplication">
    <figcaption class="figure-caption">
-      <%= f.association :userapplication, collection: Userapplication.where(user_id: current_login.id).includes(:applicationclient), label_method: :lista_appclient, input_html: { class: "form-control mb-2 mr-sm-2"} %>
+      <%= f.association :userapplication, collection: Userapplication.where(user_id: current_login.user.id).includes(:applicationclient), label_method: :lista_appclient, input_html: { class: "form-control mb-2 mr-sm-2"} %>
    </figcaption>
    </div>
 <label></label>
-   <div class="right">
+   <div class="right" id="area">
     <figcaption class="figure-caption">
        <%= f.association :area %>
     </figcaption>
    </div>
 
-   <div class="left">
+   <div class="left" id="criticality">
     <figcaption class="figure-caption">
        <%= f.association :criticality %>
     </figcaption>
    </div>
 
-   <div class="right">
+   <div class="right" id="state">
     <figcaption class="figure-caption">
         <%= f.label :state %>
         <%= f.select :state,  options_for_select([['Activo', true], ['Inactivo', false]]) %>
@@ -56,14 +55,14 @@
     </figcaption>
     </div>
 
-   <div class="center">
+   <div class="center" id="picture">
     <figcaption class="figure-caption">
          <%= f.file_field :picture %>
          <%= f.hidden_field :picture_cache %>
      </figcaption>
    </div>
 
-   <div class="right">
+   <div class="right" id="description">
     <figcaption class="figure-caption">
          <%= f.input :description, placeholder: 'Describe la incidencia claramente.' %>
     </figcaption>
@@ -75,7 +74,7 @@
   </div>
 
    <div class="center">
-    <%= f.submit 'Reportar', method: :new, data: { confirm: 'Incidencia lista para la gestión' } %>
+     <%= f.submit 'Reportar',  data: { confirm: 'Are you ready?'} %>
     </div>
 
   </form>

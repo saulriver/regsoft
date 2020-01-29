@@ -1,11 +1,18 @@
 <br/><br/>
 <h1 style="color: #6c757d;">Usuarios</h1>
-<hr><%= notice%>
+<hr>
   
   <div class="footer">
     <%= link_to 'Nuevo', new_user_path, class: "btn btn-info" %>
     <%= link_to "Menú", vistaroles_path, class:"btn btn-info" %>
   </div><br/>
+
+<% flash.each do |name, msg| %>
+      <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg%>
+      </div>
+    <% end %>
 
 <div class="custom-search-form">
   <%=form_tag (users_path), method: :get do %>

@@ -71,32 +71,32 @@ class ClientsController < ApplicationController
     @applications = Application.all
     @applicationclient = Applicationclient.new
     render "applicationclients/index"
-
   end
 
-def client_application_client_create
+   def client_application_client_create
     @applicationclient = Applicationclient.new(applicationclient_params)
-  if @applicationclient.save
-   @client = Client.find(params[:id]) 
-   @clientapplicationclients = @client.applicationclients.page(params[:page]).per(5)
-   @applications = Application.all
-   @clientapplicationclient = Applicationclient.new
-    render "applicationclients/index", notice: 'Applicationclient was successfully created.'
-  else
-    format.json { render json: @clientapplicationclient.errors, status: :unprocessable_entity }
-  end
-end
+    if @applicationclient.save
+      @client = Client.find(params[:id]) 
+      @clientapplicationclients = @client.applicationclients.page(params[:page]).per(5)
+      @applications = Application.all
+      @clientapplicationclient = Applicationclient.new
+      render "applicationclients/index", notice: 'Applicationclient was successfully created.'
+      else
+        render json: { error: @clientapplicationclient.errors.full_messages }, status: :bad_request
+    end
+   end
 
 def client_application_client_destroy
   @applicationclient = Applicationclient.find(applicationclient_params)
   if @applicationclient.destroy
    @client = Client.find(params[:id]) 
-    respond_to do |format|#parametro para mostrar en pdf
+    respond_to do |format|
       format.html { render "client/index", notice: 'Application client was not successfully destroyed'}
       format.json {}      
    end
   end
 end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client

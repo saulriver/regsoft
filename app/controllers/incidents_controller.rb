@@ -11,9 +11,9 @@ class IncidentsController < ApplicationController
     if params[:q].present?
       @incidents = @incidents.joins(:area, userapplication: [{applicationclient: :application}]).where("applications.name like :q or areas.name like :q", q: "%#{params[:q]}%").page params[:page]
       # flash[:success] = "Busqueda correctamente"
-     # else
-     #   flash[:alert] = "Problemas con la grabación"
-     @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.id DESC").page(params[:page]).per(5)
+      # else
+      #   flash[:alert] = "Problemas con la grabación"
+      #@incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.user.id}").order("incidentmanagements.user_id DESC").page(params[:page]).per(5)
     end
   end
 
@@ -32,6 +32,8 @@ class IncidentsController < ApplicationController
   # GET /incidents/1/edit
   def edit
     @incident = Incident.find(params[:id])
+    @incidentmanagement = Incidentmanagement.take(@incidents)
+    Rails.logger.debug(@incidentmanagement)
     @incident.picture
   end
 
@@ -41,15 +43,21 @@ class IncidentsController < ApplicationController
     @incident = Incident.new(incident_params)
     @user = User.joins(:userareas).where("userareas.area_id = #{@incident.area_id}").sample
     respond_to do |format|
+      
       if @incident.save
-          @incidentmanagement = Incidentmanagement.create(user: @user, incident: @incident)
-        if @incidentmanagement.save
-          format.html { redirect_to new_incident_path(@incident), info: 'Incident was successfully created.' }
-          format.json { render :show, status: :created, location: @incident }
-        else
-          format.html { render :new, info: 'Incident was successfully updated.' }
-          format.json { render json: @incident.errors, status: :unprocessable_entity }  
-        end
+        Rails.logger.debug(@incident.created_at + @incident.userapplication.applicationclient.servicelevel.hours)
+          tlevel = @incident.created_at + @incident.userapplication.applicationclient.servicelevel.hours
+            littletime = tlevel - 1.hours
+            overtime = tlevel - (@incident.userapplication.applicationclient.servicelevel/2).hours
+           @incidentmanagement = Incidentmanagement.create(Tlevel: tlevel, user: @user, incident: @incident, Littletime: littletime, Overtime: overtime)
+        
+           if @incidentmanagement.save
+              format.html { redirect_to new_incident_path(@incident), info: 'Incident was successfully created.' }
+              format.json { render :show, status: :created, location: @incident }
+             else
+              format.html { render :new, info: 'Incident was successfully updated.' }
+              format.json { render json: @incident.errors, status: :unprocessable_entity }  
+           end
       end
     end
   end
@@ -86,7 +94,7 @@ class IncidentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incident_params
-      params.require(:incident).permit(:user_id, :area_id, :userapplication_id, :criticality_id, :datereport, :description, :state, :application_id, :applicationclient_id, :picture, :picture_identifier, :page)
+      params.require(:incident).permit(:user_id, :area_id, :userapplication_id, :criticality_id, :datereport, :description, :state, :application_id, :applicationclient_id, :picture, :picture_url, :picture_identifier, :page, :search)
     end
 
     def authenticate_role_user
