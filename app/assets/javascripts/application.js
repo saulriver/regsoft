@@ -1,7 +1,9 @@
 //= require jquery
-//= require jquery-fileupload
 //= require rails-ujs
 //= require activestorage
+//= require jquery-fileupload
+//= require Chart.bundle
+//= require chartkick
 //= require turbolinks
 //= require_tree .
 

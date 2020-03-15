@@ -64,7 +64,7 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: #fff;
+    background-color: #263859 !important;
 }
 
 [tabindex="-1"]:focus {
@@ -736,8 +736,9 @@ a>code {
 kbd {
     padding: 0.2rem 0.4rem;
     font-size: 87.5%;
-    color: #fff;
-    background-color: #4c4c4e;
+    /*color: #fff;
+    background-color: #4c4c4e;*/
+    color: #6c757d;
     border-radius: 0.2rem;
 }
 
@@ -10815,7 +10816,8 @@ blockquote {
 
 b,
 strong {
-    font-weight: bolder
+    font-weight: bolder;
+    font-size: 16px;
 }
 
 small {
@@ -11227,8 +11229,8 @@ a>code {
 kbd {
     padding: .2rem .4rem;
     font-size: 87.5%;
-    color: #fff;
-    background-color: #74787a;
+    /*color: #fff;*/
+    background-color: ghostwhite;
     border-radius: .2rem
 }
 
@@ -11292,11 +11294,11 @@ pre code {
     }
 }
 
-.cont {
+/*.cont {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-}
+}*/
 
 @media (min-width:576px) {
     .cont {
@@ -16951,6 +16953,51 @@ a.close.disabled {
         max-width: 300px
     }
 }
+@media (min-width:1366px) {
+    .modal-dialog {
+        max-width: 528px;
+        /*margin: -1.25rem auto;*/
+        /*margin: -11.25rem auto;*/
+    }
+    .modal-dialog-scrollable {
+        max-height: calc(100% - 3.5rem)
+    }
+    .modal-dialog-scrollable .modal-content {
+        max-height: calc(100vh - 3.5rem)
+    }
+    .modal-dialog-centered {
+        min-height: calc(100% - 3.5rem)
+    }
+    .modal-dialog-centered::before {
+        height: calc(100vh - 3.5rem)
+    }
+    .modal-sm {
+        max-width: 300px
+    }
+
+}@media (min-width:1366px) {
+    .modal-dialogEdit {
+        max-width: 528px;
+        /*margin: -1.25rem auto;*/
+        margin: -0.25rem auto;
+    }
+    .modal-dialog-scrollable {
+        max-height: calc(100% - 3.5rem)
+    }
+    .modal-dialog-scrollable .modal-content {
+        max-height: calc(100vh - 3.5rem)
+    }
+    .modal-dialog-centered {
+        min-height: calc(100% - 3.5rem)
+    }
+    .modal-dialog-centered::before {
+        height: calc(100vh - 3.5rem)
+    }
+    .modal-sm {
+        max-width: 300px
+    }
+}
+
 @media (min-width: 1920px) {
     .modal-dialog {
         max-width: 664px;
@@ -21539,10 +21586,15 @@ img.avatar {
 /* Position text in the middle of the page/image */
 
 .bg-text {
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/opacity/see-through */
+    /* The image used */
+    background-image: url("/img/welcome.jpg");
+    /* Add the blur effect */
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+   background-color: rgb(0, 0, 0);
+   /* Fallback color */
+   background-color: rgba(0, 0, 0, 0.4);
+   /* Black w/opacity/see-through */
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
@@ -21554,14 +21606,20 @@ img.avatar {
     padding: 20px;
     text-align: center;
     z-index: auto;
+    border-radius: 20px;
 }
 
 @media (min-width:360px) {
     .bg-text {
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/opacity/see-through */
+        /* The image used */
+    background-image: url("/img/welcome.jpg");
+    /* Add the blur effect */
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+   background-color: rgb(0, 0, 0);
+   /* Fallback color */
+   background-color: rgba(0, 0, 0, 0.4);
+   /* Black w/opacity/see-through */
         color: white;
         font-weight: bold;
         border: 3px solid #f1f1f1;
@@ -21572,11 +21630,13 @@ img.avatar {
         width: 80%;
         text-align: center;
         z-index: auto;
+        border-radius: 20px;
     }
 }
 
 @media (min-width:1280px) {
     .bg-text {
+        background-image: url(/img/welcome.jpg);
         background-color: rgb(0, 0, 0);
         /* Fallback color */
         background-color: rgba(0, 0, 0, 0.4);
@@ -21588,6 +21648,7 @@ img.avatar {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        border-radius: 20px;
         width: 80%;
         text-align: center;
         z-index: auto;
@@ -21721,7 +21782,7 @@ img.avatar {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 40%;
+        /*width: 40%;*/
         text-align: center;
         z-index: auto;
         border-radius: 20px;
@@ -21758,14 +21819,15 @@ img.avatar {
         font-weight: bold;
         border: 0px solid #f1f1f1;
         position: absolute;
-        top: 43%;
+        /*top: 32%;*/
         left: 50%;
         transform: translate(-50%, -50%);
         width: 30%;
         text-align: center;
         border-radius: 20px;
         z-index: auto;
-        margin-top: 25px;
+        /*margin-top: 5%;
+        padding-top: 0%;*/
     }
 }
 
@@ -21787,12 +21849,16 @@ img.avatar {
         border-radius: 20px;
     }
 }
-
+.bgimg {
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+  }
 .bg-image-login {
     /* The image used */
     background-image: url("/img/welcome1.jpeg");
     /* Add the blur effect */
-    filter: blur(8px);
+    /*filter: blur(8px);
     -webkit-filter: blur(8px);
     /* Full height */
     height: 100%;
@@ -21808,7 +21874,7 @@ img.avatar {
         /* The image used */
         background-image: url("/img/welcome1.jpg");
         /* Add the blur effect */
-        filter: blur(8px);
+        /*filter: blur(8px);
         -webkit-filter: blur(8px);
         /* Full height */
         height: 100%;
@@ -21816,8 +21882,8 @@ img.avatar {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 255%;
-        margin-top: -32%;
+        padding-top: 132%;
+        margin-top: -11%;
     }
 }
 
@@ -21826,7 +21892,7 @@ img.avatar {
         /* The image used */
         background-image: url("/img/welcome1.jpg");
         /* Add the blur effect */
-        filter: blur(8px);
+        /*filter: blur(8px);
         -webkit-filter: blur(8px);
         /* Full height */
         height: 100%;
@@ -21834,12 +21900,30 @@ img.avatar {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 57%;
+        padding-top: 68%;
         margin-top: -11%;
     }
 }
 
 @media (min-width:1366px) {
+    .bg-image-login {
+        /* The image used */
+        background-image: url("/img/welcome1.jpg");
+        /* Add the blur effect */
+        /*filter: blur(8px);
+        -webkit-filter: blur(8px);*/
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 59%;
+        margin-top: -11%;
+
+    }
+}
+@media (min-width:1550px) {
     .bg-image-login {
         /* The image used */
         background-image: url("/img/welcome1.jpg");
@@ -21853,10 +21937,11 @@ img.avatar {
         background-repeat: no-repeat;
         background-size: cover;
         margin-top: auto;
+        padding-top: 78%;
+        margin-top: -11%;
 
     }
 }
-
 @media (min-width: 1920px) {
     .bg-image-login {
         /* The image used */
@@ -21870,7 +21955,8 @@ img.avatar {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 61%;
+        padding-top: 68%;
+        margin-top: -11%;
     }
 }
 
@@ -21879,7 +21965,11 @@ img.avatar {
     color: white;
     transition: all .3s ease-in;
 }
-
+.dark1-mode {
+    background-color: #263859 !important;
+    color: white;
+    transition: all .3s ease-in;
+}
 .tooltip {
     position: relative;
     display: inline-block;

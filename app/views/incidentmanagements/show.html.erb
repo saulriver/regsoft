@@ -1,21 +1,23 @@
 <br/><br/>
   <h1 style="color: #6c757d;">Gestión <% if DateTime.now < @incidentmanagement.Overtime%>
-            <kbd class="btn-group btn btn-success btn-sm"><%= @incidentmanagement.incident.id %></kbd>
-             <%end%>
-           <% if DateTime.now > @incidentmanagement.Overtime && DateTime.now < @incidentmanagement.Littletime %>
-             <kbd class="btn-group btn btn-warning btn-sm"><%= @incidentmanagement.incident.id %></kbd>
-              <%end%>
-            <% if DateTime.now > @incidentmanagement.Littletime %>
-              <kbd class="btn-group btn btn-danger btn-sm"><%= @incidentmanagement.incident.id %></kbd>
-               <%end%>
-            </h1>
+      <kbd class="btn-group btn btn-success btn-sm"><%= @incidentmanagement.incident.id %></kbd>
+      <%end%>
+    <% if DateTime.now > @incidentmanagement.Overtime && DateTime.now < @incidentmanagement.Littletime %>
+      <kbd class="btn-group btn btn-warning btn-sm"><%= @incidentmanagement.incident.id %></kbd>
+      <%end%>
+    <% if DateTime.now > @incidentmanagement.Littletime %>
+      <kbd class="btn-group btn btn-danger btn-sm"><%= @incidentmanagement.incident.id %></kbd>
+      <%end%>
+  </h1>
 <hr>
+
 <!--tabla principal-->
 <div class="row">
 <div class="col-sm-12">
  <div class="footer text-left">
     <%= link_to 'Regresar', incidentmanagements_path, class: "btn btn-info" %>
-  </div><br/>
+  </div>
+  <br/>
 
     <% flash.each do |name, msg| %>
       <div class="alert alert-info alert-dismissible">
@@ -37,6 +39,7 @@
           <th><h6>Hrs/ANS</h6></th>
           <th><h6>Reporta</h6></th>
           <th><h6>Descripción</h6></th>
+          <th><h6>Archivo</h6></th>
           <th><h6>Estado</h6></th>
         </tr>
         </div>
@@ -44,13 +47,18 @@
 
     <tbody>
     <div class="row">
-      <tr class="text-center">
+      <tr class="text-center figure-caption">
         <td><%= @incidentmanagement.incident.criticality.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.application.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.client.name %></td>
         <td><%= @incidentmanagement.incident.userapplication.applicationclient.servicelevel %>hrs</td>
         <td><%= @incidentmanagement.incident.user.name%></td>
         <td><%= @incidentmanagement.incident.description%></td>
+        <td>
+            <%= link_to @incidentmanagement.incident.picture_url, :target => '_blank', alt: 'Documento' do %>
+              <%= image_tag "/img/gallery_24.png", :title=>"Ver" %>
+            <% end %>
+        </td>
         <td>
           <% if @incidentmanagement.incident.state %>
              <img src="/img/estado_activo_24.png" alt="Activo" />
@@ -77,6 +85,7 @@
           <th><h6>Área</h6></th>
           <th><h6>Gestiona</h6></th>
           <th><h6>Descripción</h6></th>
+          <th><h6>Archivo</h6></th>
           <th><h6>Estado</h6></th>
         </tr>
         </div>
@@ -84,10 +93,15 @@
 
     <tbody>
     <div class="row">
-      <tr class="text-center">
+      <tr class="text-center figure-caption">
         <td><%= @incidentmanagement.incident.area.name %></td>
         <td><%= @incidentmanagement.user.name%></td>
         <td><%= @incidentmanagement.description%></td>
+        <td>
+            <%= link_to @incidentmanagement.picture_url, :target => '_blank', alt: 'Documento' do %>
+              <%= image_tag "/img/gallery_24.png", :title=>"Ver" %>
+            <% end %>
+        </td>
         <td>
           <% if @incidentmanagement.state %>
              <img src="/img/estado_activo_24.png" alt="Activo" />
@@ -105,52 +119,52 @@
 <br/>
 
 <!--tabla principal-->
-<div class="row">
-<div class="col-sm-6">
+<!--<div class="row">-->
+<!--<div class="col-sm-6">-->
 <!--tabla imagen gestion-->
-<h5 class="text-left"><kbd>Archivo reporte incidencia</kbd></h5>
-<div class="modal-content text-center">
-<label class="form-group">
-      &nbsp; &nbsp;
-       <%comment= link_to edit_incidentmanagement_path(@incidentmanagement) do %>
-        <%= image_tag "/img/edit_24.png", :title=>"Editar" %>
-         <% end %>
-  <tbody>
-     <br/><br/>
-       <figure class="figure">
-         <%= image_tag(@incidentmanagement.incident.picture_url, class: 'figure-img img-fluid rounded') if @incidentmanagement.incident.picture? %>
-       </figure>
-       <br/>
-        <figure class="figure">
-         <%= link_to "Ver archivo", @incidentmanagement.incident.picture_url, :target => '_blank', alt: 'Documento' %>
-       </figure>
-   </tbody>
-  </label>
- </div>
-  </div>
+<!--<h5 class="text-left"><kbd>Archivo reporte incidencia</kbd></h5>-->
+<!--<div class="modal-content text-center">-->
+<!--<label class="form-group">-->
+<!--      &nbsp; &nbsp;-->
+<!--       <%comment= link_to edit_incidentmanagement_path(@incidentmanagement) do %>-->
+<!--        <%= image_tag "/img/edit_24.png", :title=>"Editar" %>-->
+<!--         <% end %>-->
+<!--  <tbody>-->
+<!--     <br/><br/>-->
+<!--       <figure class="figure">-->
+<!--         <%= image_tag(@incidentmanagement.incident.picture_url, class: 'figure-img img-fluid rounded') if @incidentmanagement.incident.picture? %>-->
+<!--       </figure>-->
+<!--       <br/>-->
+<!--        <figure class="figure">-->
+<!--         <%= link_to "Ver archivo", @incidentmanagement.incident.picture_url, :target => '_blank', alt: 'Documento' %>-->
+<!--       </figure>-->
+<!--   </tbody>-->
+<!--  </label>-->
+<!-- </div>-->
+<!--  </div>-->
 <!--tabla imagen-->
 
 <!--tabla principal-->
-<div class="col-sm-6">
+<!--<div class="col-sm-6">
 <!--tabla imagen gestion-->
-<h5 class="text-left"><kbd>Archivo gestión incidencia</kbd></h5>
-<div class="modal-content text-center">
-<label class="form-group">
-      &nbsp; &nbsp;
-       <%comment= link_to edit_incidentmanagement_path(@incidentmanagement) do %>
-        <%= image_tag "/img/edit_24.png", :title=>"Editar" %>
-         <% end %>
-   <tbody>
-     <br/><br/>
-       <figure class="figure">
-         <%= image_tag(@incidentmanagement.picture_url, class: 'figure-img img-fluid rounded') if @incidentmanagement.picture? %>
-       </figure>
-       <br/>
-        <figure class="figure">
-         <%= link_to "Ver archivo", @incidentmanagement.picture_url, :target => '_blank', alt: 'Documento' %>
-       </figure>
-   </tbody>
-  </label>
- </div>
- </div>
+<!--<h5 class="text-left"><kbd>Archivo gestión incidencia</kbd></h5>-->
+<!--<div class="modal-content text-center">-->
+<!--<label class="form-group">-->
+<!--      &nbsp; &nbsp;-->
+<!--       <%comment= link_to edit_incidentmanagement_path(@incidentmanagement) do %>-->
+<!--        <%= image_tag "/img/edit_24.png", :title=>"Editar" %>-->
+<!--         <% end %>-->
+<!--   <tbody>-->
+<!--     <br/><br/>-->
+<!--      <figure class="figure">-->
+<!--        <%= image_tag(@incidentmanagement.picture_url, class: 'figure-img img-fluid rounded') if @incidentmanagement.picture? %>-->
+<!--      </figure>-->
+<!--      <br/>-->
+<!--       <figure class="figure">-->
+<!--        <%= link_to "Ver archivo", @incidentmanagement.picture_url, :target => '_blank', alt: 'Documento' %>-->
+<!--       </figure>-->
+<!--   </tbody>-->
+<!--  </label>-->
+<!-- </div>-->
+<!-- </div>-->
 <!--tabla imagen-->

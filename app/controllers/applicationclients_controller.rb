@@ -19,6 +19,7 @@ class ApplicationclientsController < ApplicationController
 
   # GET /applicationclients/1/edit
   def edit
+    @applicationclient = Applicationclient.find(params[:id])
   end
 
   # POST /applicationclients
@@ -42,7 +43,7 @@ class ApplicationclientsController < ApplicationController
   def update
     respond_to do |format|
       if @applicationclient.update(applicationclient_params)
-        format.html { redirect_to @applicationclient, success: 'Applicationclient was successfully updated.' }
+        format.html { redirect_to edit_applicationclient_path, success: 'Applicationclient was successfully updated.' }
         format.json { render :show, status: :ok, location: @applicationclient }
       else
         format.html { render :edit }

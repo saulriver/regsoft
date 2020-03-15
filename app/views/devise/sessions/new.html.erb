@@ -1,23 +1,24 @@
-<div class="bg-image-login"></div>
-<div class="bg-text-login">
-<div>
-<div class="imgcontainer">
-     <%= image_tag "/img/usuario_128.png", :alt=>"Avatar" %>
-  </div><br/>
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+    <div class="bg-image-login"></div>
+      <div class="bg-text-login">
+        <div class="imgcontainer">
+          <h2 style="color: #6c757d;">REGEDIN SOFTWARE</h2>
+              <%comment= image_tag "/img/usuario_128.png", :alt=>"Avatar" %>
+            </div><br/>
+              <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
 <form class="form-signin">
-
- <% flash.each do |key, value| %>
-    <a>
-      <% if key == "alert"%>
-      <div class="alert alert-danger alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong> <%= value %></strong>
-      </div>
-      <% end %>
-    </a>
-<% end %>
+    <% flash.each do |key, value| %>
+      <a>
+        <% if key == "alert"%>
+        <div class="alert alert-danger alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong> <%= value %></strong>
+        </div>
+        <% end %>
+      </a>
+    <% end %>
 
 <figcaption class="figure-caption">
     <%= f.label "Usuario", :id=>"text-label" %>
@@ -37,19 +38,19 @@
 					<label for="language">Idioma</label>
 					<select id="lang" name="lang" class="form-control">
 						<option></option>
-						<option value="en" selected="">English</option>
-						<option value="es">Spanish</option>
+						<option value="en.yml" selected="">English</option>
+						<option value="es.yml">Spanish</option>
 					</select>
 </figcaption>
 
-
-  <%= f.submit "Iniciar Sesión", class:'btn btn-info btn-md' %>
+<br/>
+  <%= f.submit "Iniciar Sesión", class:'btn btn-lg btn-block btn-signin' %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name), style:"color: white;" %><br />
 <% end %>
 
 </form>
-</div><!--div card card container-->
 <% end %>
+</div>
 </div>

@@ -23,7 +23,7 @@
       </div>
     </thead>
       <tbody>          
-          <tr class="text-center">
+          <tr class="text-center figure-caption">
             <td colspan="3"><kbd><%= @user.id %></kbd></td>
             <td><%= @user.name %></td>
             <td><%= @user.email %></td>
@@ -65,7 +65,7 @@
 <% @userclients.each do |userclient| %>
 
 <tbody>
-<tr class="text-center">
+<tr class="text-center figure-caption">
 <td colspan="3"><kbd><%= userclient.id %></kbd></td>
 <td><%= userclient.client.name %></td>
 <td><%= userclient.user.name %></td>
@@ -83,9 +83,7 @@
   </td>
 </tr>
 </tbody>
-
 <% end %>
-
 </table>
 </div>
 </div>
@@ -94,7 +92,7 @@
 <!--tabla editar-->
 <div class="col-sm-4">
   <!-- The Modal -->
-    <div class="modal-dialog">
+    <div class="modal-dialogEdit">
       <div class="modal-content">
  <!-- Modal Header -->
     <div class="modal-header">

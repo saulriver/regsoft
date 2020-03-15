@@ -1,4 +1,26 @@
 class Incident < ApplicationRecord
+  include AASM
+
+  #Columna con la cual manejaremos los estados!
+  aasm column: 'state' do 
+    state :draft, initial: true
+    state :verified
+    state :published
+    state :rejected
+
+      event :verify do
+        transitions from: :draft, to: :verified
+      end
+  
+      event :reject do
+        transitions from: :verified, to: :rejected
+      end
+  
+      event :publish do
+        transitions from: :verified, to: :published
+      end
+  end
+  
   paginates_per 5
   max_paginates_per 100
   

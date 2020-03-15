@@ -1,0 +1,20 @@
+<br/><br/>
+<h1 style="color: #6c757d;">Estadistica</h1>
+<hr>
+<div class="container dark1-mode">
+ <div class="row">
+    <h1 style="color: #6c757d;">Incidencias gestionadas
+      <%= pie_chart Incidentmanagement.group(:incident_id).count %></h1>
+     <hr>
+    <h1 style="color: #6c757d;">Areas reportadas
+      <%= column_chart Incidentmanagement.group(:user_id).count %></h1>
+     <hr>
+    <h1 style="color: #6c757d;">imagenes enviadas
+      <%= pie_chart Incidentmanagement.group(:picture).count %></h1>
+     <hr>
+    <h1 style="color: #6c757d;">Descripciones reportada
+      <%= bar_chart Incidentmanagement.group(:description).count %></h1>
+     <hr>
+
+ </div>
+</div>

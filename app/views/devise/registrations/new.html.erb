@@ -1,16 +1,14 @@
 <div class="bg-image-login"></div>
-<div class="bg-text-login">
-<div>
-      <h6 class="modal-title"><kbd>Registrar usuario</kbd></h6>
-    <div class="imgcontainer">
-     <%= image_tag "/img/usuario_128.png", :alt=>"Avatar" %>
-  </div><br/>
-
+  <div class="bg-text-login">
+    <div>
+        <div class="imgcontainer">
+          <h2 style="color: #6c757d;">REGEDIN SOFTWARE</h2>
+            <%comment= image_tag "/img/usuario_128.png", :alt=>"Avatar" %>
+          </div>
        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
        
-
     <form class="form-signin">
 
         <% flash.each do |key, value| %>
@@ -30,7 +28,7 @@
         <% end %>
 
       <figcaption class="figure-caption">
-        <%= f.label "Usuario", :id=>"text-label" %><br />
+        <%= f.label "Usuario", :id=>"text-label" %><br/>
           <%= f.text_field :username,  class:"form-control", required: false, autofocus: true, input_html: { autocomplete: "username" }, :placeholder=> "nombre.apellido" %>
         </figcaption>
 
@@ -46,11 +44,11 @@
 
        <figcaption class="figure-caption">
           <%= f.label "Repetir Contraseña", :id=>"text-label" %><br />
-           <%= f.password_field :password_confirmation, class:"form-control", required: true, input_html: { autocomplete: "off" }, :placeholder=> "Contraseña", :required=> :true  %>
+           <%= f.password_field :password_confirmation, class:"form-control", required: true, input_html: { autocomplete: "off" }, :placeholder=> "Repita contraseña", :required=> :true  %>
           </figcaption>
-
+          <br/>
       <%= f.submit "Crear Usuario", class:'btn btn-lg btn-block btn-signin' %>
-      <br/>
+      
       <%= render "devise/shared/links" %>
   </form>
       <% end %>

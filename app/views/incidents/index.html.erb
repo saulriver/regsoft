@@ -38,12 +38,12 @@
   </div>
 </thead>
 
-<% @incidents.each do |incident| %>
+<% @incidentmanagements.each do |incidentmanagement| %>
 
 <tbody>
   <div class="row">
-    <tr class="justify-content-center">
-        <td colspan="3"><kbd><%= incident.id %></kbd></td>
+    <tr class="justify-content-center figure-caption">
+        <td colspan="3"><kbd><b><%= incident.id %></b></kbd></td>
         <td><%= link_to edit_incident_path(incident) do %>
             <%= image_tag "/img/ver_24.png", :title=>"Ver" %>
           <% end %>
@@ -54,6 +54,22 @@
         <td><%= incident.userapplication.applicationclient.servicelevel %>hrs</td>
         <td><%= incident.created_at.in_time_zone %></td>
         <td><%= incident.description %></td>
+        <td>
+      
+        <% if incidentmanagement.state == "abierta" %>              
+          <p style="color:#c82333;"><b>Abierto</b></p>
+        <%end%>
+        <% if incidentmanagement.state == "gestionando" %>              
+              <p style="color:#c82333;"><b>Gestionando</b></p>
+        <%end%>
+        <% if incidentmanagement.state == "terminada" %>              
+          <p style="color:#c82333;"><b>Terminada</b></p>
+        <%end%>
+        <% if incidentmanagement.state == "aprobada" %>              
+          <p style="color:#c82333;"><b>Aprobada</b></p>
+        <%end%>         
+       
+      </td>
         <td>
           <% if incident.state %>
              <img src="/img/estado_activo_24.png" alt="Activo" />
@@ -69,5 +85,5 @@
 </div>
 </div>
 <div id="spacing">
-<%= paginate(@incidents) %>
+<%= paginate(@incidentmanagements) %>
 </div>

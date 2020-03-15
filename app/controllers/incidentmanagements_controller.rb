@@ -9,8 +9,8 @@ class IncidentmanagementsController < ApplicationController
     if params[:search].present?
       @incidentmanagements = Incidentmanagement.where("incident_id LIKE ?", "%#{params[:search]}%").page params[:page]
     else
-      @incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.user.id}").order("incidentmanagements.user_id DESC").page(params[:page]).per(5)
-      @incidentmanagements = Incidentmanagement.order("incidentmanagements.id DESC").page(params[:page]).per(5)
+      #@incidents = Incident.joins(:incidentmanagements).where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.user_id DESC").page(params[:page]).per(5)
+      @incidentmanagements = Incidentmanagement.where("incidentmanagements.user_id = #{current_login.user.id}").order("incidentmanagements.id DESC").page(params[:page]).per(5)
       respond_to do |format|
       format.html{}
       format.json{}
@@ -26,7 +26,8 @@ class IncidentmanagementsController < ApplicationController
 
   # GET /incidentmanagements/new
   def new
-    @incidentmanagements = Incidentmanagement.where("incidentmanagements.user_id = #{current_login.user.id}").order("incidentmanagements.id DESC").page(params[:page]).per(5)
+    @incidentmanagements = Incidentmanagement.where("incidentmanagements.user_id = #{current_login.id}").order("incidentmanagements.user_id DESC").page(params[:page]).per(5)
+
   end
 
   # GET /incidentmanagements/1/edit
@@ -40,6 +41,11 @@ class IncidentmanagementsController < ApplicationController
   def create
     @incidentmanagement = Incidentmanagement.new(incidentmanagement_params)
     respond_to do |format|
+      if @user.nil?
+        @incidentmanagement = Incidentmanagement.create(Tlevel: tlevel, user: @adminUsers, incident: @incident, Littletime: littletime, Overtime: overtime)
+      else
+          @incidentmanagement = Incidentmanagement.create(Tlevel: tlevel, user: @user, incident: @incident, Littletime: littletime, Overtime: overtime)
+        end
       if @incidentmanagement.save!
         format.html { redirect_to @incidentmanagement, info: 'Incidentmanagement was successfully created.' }
         format.json { render :show, status: :created, location: @incidentmanagement }
@@ -86,7 +92,7 @@ class IncidentmanagementsController < ApplicationController
     end
 
     def authenticate_role_user
-      unless current_login.user.role_id == 1
+      unless current_login.user.role_id == 2 || current_login.user.role_id == 1
         redirect_to root_path
       end
     end

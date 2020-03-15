@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :statisticreports
   resources :statisticmanages
   resources :welcomes
+
   get '/user/client/:id', to: 'users#user_client_index', as: "user_client_index"
   post '/user/client/:id', to: 'users#user_client_create', as: "user_client_create"
   get '/user/client/delete/:id', to: 'users#user_client_destroy', as: "user_client_destroy"
@@ -43,6 +44,13 @@ Rails.application.routes.draw do
   get '/client/application_client/:id', to: 'clients#client_application_client_index', as: "client_application_client_index"
   post '/client/application_client/:id', to: 'clients#client_application_client_create', as: "client_application_client_create"
   get '/client/application_client/delete/:id', to: 'clients#client_application_client_destroy', as: "client_application_client_destroy"
+
+  get '/gestionar/incident/:id', to: 'incidents#gestionar_incident', as: "gestionar_incident"
+  get '/terminar/incident/:id', to: 'incidents#terminar_incident', as: "terminar_incident"
+  get '/aprobar/incident/:id', to: 'incidents#aprobar_incident', as: "aprobar_incident"
+  get '/rechazar/incident/:id', to: 'incidents#rechazar_incident', as: "rechazar_incident"
+  get '/abrir/incident/:id', to: 'incidents#abrir_incident', as: "abrir_incident"
+  get '/cerrar/incident/:id', to: 'incidents#cerrar_incident', as: "cerrar_incident"
 
   devise_for :logins, controllers: {
     sessions: 'logins/sessions',

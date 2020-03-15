@@ -31,7 +31,7 @@
         </div>
         </thead>
           <tbody>          
-              <tr class="text-center">
+              <tr class="text-center figure-caption">
                 <td colspan="3"><kbd><%= @user.id %></kbd></td>
                 <td><%= @user.name %></td> 
                 <td><%= @user.username %></td> 
@@ -74,7 +74,7 @@
   <% @applicationoperators.each do |applicationoperator| %>
 
   <tbody>    
-      <tr class="text-center">
+      <tr class="text-center figure-caption">
         <td colspan="3"><kbd><%= applicationoperator.id %></kbd></td>
         <td><%= applicationoperator.user.name %></td>
         <td><%= applicationoperator.application.name %></td>
@@ -105,7 +105,7 @@
 <!--tabla editar-->
 <div class="col-sm-4">
   <!-- The Modal -->
-    <div class="modal-dialog">
+    <div class="modal-dialogEdit">
       <div class="modal-content">
  <!-- Modal Header -->
     <div class="modal-header">

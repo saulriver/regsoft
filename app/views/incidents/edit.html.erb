@@ -1,14 +1,14 @@
 <br/><br/>
-  <h1 style="color: #6c757d;">Ver incidencia <kbd><%= @incident.id%></kbd> </h1>
+  <h1 style="color: #6c757d;">Ver incidencia #<kbd><%= @incident.id%></kbd></h1>
    <hr>
 
-<!--tabla principal-->
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-6">
  <div class="footer text-left">
     <%= link_to 'Regresar', incidents_path, class: "btn btn-info" %>
     <%= link_to 'Menú', vistareportes_path, class: "btn btn-info" %>
-  </div><br/>
+  </div>
+  <br/>
 
   <% flash.each do |name, msg| %>
       <div class="alert alert-info alert-dismissible">
@@ -16,7 +16,8 @@
         <%= msg%>
       </div>
     <% end %>
-  
+
+<!--tabla reporte-->
 <h5 class="text-left"><kbd>Incidencia reportada</kbd></h5>
 <div class="modal-content text-center">
 <div class="table-responsive">
@@ -28,6 +29,7 @@
           <th><h6>ANS</h6></th>
           <th><h6>Enviada</h6></th>
           <th><h6>Descripción</h6></th>
+          <th><h6>Archivo</h6></th>
           <th><h6>Estado</h6></th>
         </tr>
     </thead>
@@ -40,148 +42,122 @@
         <td><%= @incident.created_at%></td>
         <td><%= @incident.description%></td>
         <td>
-          <% if @incident.state %>
-             <img src="/img/estado_activo_24.png" alt="Activo" />
-          <% end %>
-        </td>
-       </tr>
-    </tbody>
-  </table>
-</div>
-</div>
-<!--tabla principal-->
-<br/>
-
-<h5 class="text-left"><kbd>Incidencia gestionada</kbd></h5>
-<div class="modal-content text-center">
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-        <tr class="success btn-info active justify-content-center">
-          <th><h6>Gestiona</h6></th>
-          <th><h6>Descripción</h6></th>
-          <th><h6>Estado</h6></th>
-        </tr>
-    </thead>
-
-    <tbody>
-      <tr class="text-center figure-caption">
-        <td><%= @incidentmanagement.user.name%></td>
-        <td><%= @incidentmanagement.description%></td>
+            <%= link_to @incident.picture_url, :target => '_blank', alt: 'Documento' do %>
+              <%= image_tag "/img/gallery_24.png", :title=>"Ver" %>
+            <% end %>
+         </td>
         <td>
-          <% if @incidentmanagement.state %>
-             <img src="/img/estado_activo_24.png" alt="Activo" />
-          <% else %>
-             <img src="/img/estado_falso_24.png" alt="Inactivo" />
-          <% end %>
-        </td>
+        <% if @incidentmanagement.state == "terminada" %> 
+        <%= link_to aprobar_incident_path(@incidentmanagement.id), data: { confirm: 'Estas seguro de aprobar esta incidencia?', remote: false } do %>
+            <%= image_tag "/img/eliminar_24.png", :title=>"Eliminar" %>
+        <% end %>
+      <%end%>
+      <% if @incidentmanagement.state == "terminada" %> 
+      <%= link_to rechazar_incident_path(@incidentmanagement.id), data: { confirm: 'Estas seguro de rechazar esta incidencia?', remote: false } do %>
+          <%= image_tag "/img/eliminar_24.png", :title=>"Eliminar" %>
+      <% end %>
+    <%end%>
+    </td>
        </tr>
     </tbody>
   </table>
 </div>
 </div>
-<!--tabla principal-->
+<!--tabla reporte-->
 <br/>
-<!--tabla imagen reporte-->
-<div class="row">
-<div class="col-sm-7">
-<h5 class="text-left"><kbd>Archivos reporte incidencia</kbd></h5>
-<div class="modal-content text-center">
-<label class="form-group">
-  <tbody>
-     <br/>
-       <figure class="figure">
-         <%= image_tag(@incident.picture_url.to_s, class: 'figure-img img-fluid rounded') if @incident.picture? %>
-       </figure>
-       <br/>
-  </tbody>
-</label>
-</div>
-</div>
-<!--tabla imagen-->
 
-<!--tabla imagen-->
-<div class="col-sm-7">
-<h5 class="text-left"><kbd>Archivos gestión incidencia</kbd></h5>
-<div class="modal-content text-center">
-<label class="form-group">
-  <tbody>
-     <br/><br/>
-       <figure class="figure">
-         <%= image_tag(@incidentmanagement.picture_url, class: 'figure-img img-fluid rounded') if @incidentmanagement.picture? %>
-       </figure>
-       <br/>
-        <figure class="figure">
-         <%= link_to "Ver archivo", @incidentmanagement.picture_url, :target => '_blank', alt: 'Documento' %>
-       </figure>
-  </tbody>
-</label>
-</div>
-</div>
-<!--tabla imagen-->
+<!--tabla gestión-->
+<% @incidentmanagements.each do |incidentmanagement| %>
+  <h5 class="text-left"><kbd>Gestión</kbd></h5>
+  <div class="modal-content text-center">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+          <tr class="success btn-info active justify-content-center">
+            <th><h6>Gestiona</h6></th>
+            <th><h6>Descripción</h6></th>
+            <th><h6>Archivo</h6></th>
+            <th><h6>Estado</h6></th>
+          </tr>
+      </thead>
+  
+      <tbody>
+        <tr class="text-center figure-caption">
+           <td><%= incidentmanagement.user.name %></td>
+           <td><%= incidentmanagement.description %></td>
+           <td>
+               <%= link_to incidentmanagement.picture_url, :target => '_blank', alt: 'Documento' do %>
+                <%= image_tag "/img/gallery_24.png", :title=>"Ver" %>
+               <% end %>
+           </td>
+           <td>
+            <% if incidentmanagement.state %>
+               <img src="/img/estado_activo_24.png" alt="Activo" />
+            <% else %>           
+               <img src="/img/estado_falso_24.png" alt="Inactivo" />
+            <% end %>
+          </td>
+         </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <%end%>
+  </div>
+  <!--tabla gestión-->
 
-<div class="col-md-5">
+  <!--tabla formulario-->
+  <div class="col-md-6">
   <!-- The Modal -->
     <div class="modal-dialog">
       <div class="modal-content">
  <!-- Modal Header -->
-    <div class="modal-header">
-      <h4 class="modal-title"><kbd>Registrar</kbd></h4>
-    </div>
+      <h4 class="modal-title modal-content tabcontent"><kbd>Registrar</kbd></h4>
 <!-- Modal body -->
   <div class="modal-body">
     <div class="modal-content tabcontent">
        <div class="dialog figure-caption">
         <%= simple_form_for(@incident, html: { multipart: true }) do |f| %>
-        <%= f.error_notification %>
+        <%= f.error_notification %>  
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <%= f.hidden_field :incident_id, :value => @incident.id%>
         <%= f.hidden_field :state, :value => true%>
 
  <form>
-    <figcaption>
-      <%= f.association :userapplication, collection: Userapplication.where(user_id: current_login.user.id).includes(:applicationclient), label_method: :lista_appclient %>
-    </figcaption>
 
-    <figcaption>
-       <%= f.association :area %>
-    </figcaption>
-
-    <figcaption>
-       <%= f.association :criticality %>
-    </figcaption>
-
-    <figcaption>
-        <%= f.label :state %>
-        <%= f.select :state, options_for_select([['Activo', true]]) %>
-    </figcaption>
-
-    <label></label>
      <figcaption>
       <%= f.label :picture %>
      </figcaption>
+
      <figcaption>
        <%= f.file_field :picture %>
        <%= f.hidden_field :picture_cache %>
-      </figcaption>
+     </figcaption>
 
       <label></label>
-    <figcaption>
-      <%= f.input :description, placeholder: 'Describe la incidencia claramente.' %>
-    </figcaption>
-    
-  <figcaption>
-     <%=f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_login.id}" }%>
-  </figcaption>
 
-  <%= f.submit 'Actualizar', method: :edit, data: { confirm: 'Desea actualizar la incidencia' }, class:"btn btn-info btn-md"%>
- 
- </form>
- <% end %>
+      <figcaption>
+        <%= f.input :description, placeholder: 'Describe la incidencia claramente.' %>
+      </figcaption>
+    
+      <figcaption>
+        <%=f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_login.id}" }%>
+      </figcaption>
+      
+      <figcaption class="col-5">
+        <%= f.label :state%>
+        <%= f.select :state, options_for_select([['Aprobado', true],['Desaprobado', false]]) %>
+      </figcaption>
+
+    <%= f.submit 'Actualizar', method: :edit, data: { confirm: 'Desea actualizar la incidencia' }, class:"btn btn-info btn-md"%>
+   </form>
+    <% end %>
      </div>
    </div>
   </div>
 </div>
 </div>
 </div>
+</div>
+<!--tabla formulario-->
 </div>

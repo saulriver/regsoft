@@ -1,9 +1,22 @@
 <br/><br/>
 <h1 style="color: #6c757d;">Estadistica</h1>
 <hr>
-<br/>
-<h3 style="color: #6c757d;">Incidencias reportadas por <% if login_signed_in? %>
-                <strong><%= current_login.username %></strong>
-            <%end%></h3>
-
-<%= column_chart @incidents_count %>
+<div class="container dark1-mode">
+ <div class="row">
+   <h1 style="color: #6c757d;">Incidencias reportadas
+    <%= pie_chart Incident.group(:id).count %></h1>
+    <hr>
+   <h1 style="color: #6c757d;">Areas reportadas
+      <%= column_chart Incident.group(:area_id).count %></h1>
+    <hr>
+   <h1 style="color: #6c757d;">imagenes enviadas
+      <%= pie_chart Incident.group(:picture).count %></h1>
+    <hr>
+   <h1 style="color: #6c757d;">Aplicación reportada
+      <%= column_chart Incident.group(:userapplication_id).count %></h1>
+    <hr>
+   <h1 style="color: #6c757d;">Descripciones reportada
+      <%= pie_chart Incident.group(:description).count %></h1>
+    <hr>
+ </div>
+</div>

@@ -169,7 +169,7 @@ def application_operator_destroy
     @applicationoperator = Applicationoperator.find(params[:applicationoperator])
   if @applicationoperator.destroy
      @user = User.find(params[:id])
-      redirect_to application_operator_index_path(@user.id) 
+      redirect_to application_operator_index_path(@user.id), danger: 'Aplicación operador eliminado correctamente.' 
   end
 end
 

@@ -1,13 +1,15 @@
 
 <!--<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
 
-
 <div class="bg-image-login"></div>
-<div class="bg-text-login">
-<div>
+  <div class="bg-text-login">
+   <div class="imgcontainer">
+    <h2 style="color: #6c757d;">REGEDIN SOFTWARE</h2>
+      <%comment= image_tag "/img/usuario_128.png", :alt=>"Avatar" %>
+    </div>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+   <%= f.error_notification %>
 
  <form class="form-signin2">
 
@@ -40,14 +42,12 @@
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
  
-  <div class="footer">
-  <br/>
+   <div class="footer"><br/>
     <%= f.submit "Actualizar", class:"btn btn-info" %>
     
     <%= link_to "Regresar", :back, class:"btn btn-info"%>
-  </div>
-
-</form>
+   </div>
+ </form>
 </div><!--div card card container-->
 <% end %>
 </div>
