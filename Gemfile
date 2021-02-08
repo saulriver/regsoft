@@ -79,7 +79,7 @@ gem 'jquery-rails'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'kaminari-bootstrap'
 gem "font-awesome-rails"
-gem 'carrierwave', '~> 2.0', '>= 2.0.2'
+gem 'carrierwave', '~> 2.1'
 gem 'mini_magick'
 gem 'jquery-fileupload-rails', '~> 1.0'
 gem 'chartkick', '~> 3.3', '>= 3.3.1'
